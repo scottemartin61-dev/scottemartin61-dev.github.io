@@ -1,0 +1,4 @@
+# Keep the Claude plugin source out of the published GitHub Pages site
+exclude:
+  - plugins
+  - README.md

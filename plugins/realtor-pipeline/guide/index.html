@@ -1,0 +1,543 @@
+<title>Danielle's Assistant Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a field guide — three house rules up top, a "what just happened?" picker as the centerpiece, then the daily rhythm, the client journey, practice, and FAQ. */
+:root{
+  --paper:#f6f7f4; --panel:#ffffff; --ink:#1c2420; --muted:#5a675f; --rule:#d9ded8;
+  --oak:#3f6b4c; --oak-soft:#e3ece5; --bonnet:#3d58a8; --bonnet-soft:#e4e9f6;
+  --flag:#a4561c; --flag-soft:#f6e9de; --say:#fffbe8; --say-edge:#e6d9a3;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121714; --panel:#1a211d; --ink:#e4ebe6; --muted:#9daaa2; --rule:#2c3630;
+  --oak:#7fb08c; --oak-soft:#1f3226; --bonnet:#93a8e6; --bonnet-soft:#1d2540;
+  --flag:#e39a62; --flag-soft:#3a2617; --say:#2a2716; --say-edge:#57502a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121714; --panel:#1a211d; --ink:#e4ebe6; --muted:#9daaa2; --rule:#2c3630;
+  --oak:#7fb08c; --oak-soft:#1f3226; --bonnet:#93a8e6; --bonnet-soft:#1d2540;
+  --flag:#e39a62; --flag-soft:#3a2617; --say:#2a2716; --say-edge:#57502a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 18px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-block:36px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.15;margin:0}
+.eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+section{padding:44px 0 0}
+section > h2{font-size:clamp(26px,3.4vw,34px);margin-top:8px}
+section > p.lede{color:var(--muted);max-width:64ch;margin:10px 0 0}
+nav.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+nav.jump a{font:600 14px var(--f-display);color:var(--ink);text-decoration:none;border:1px solid var(--rule);background:var(--panel);border-radius:999px;padding:7px 14px}
+nav.jump a:hover{border-color:var(--muted)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--bonnet);outline-offset:2px}
+
+.hero h1{font-size:clamp(34px,5.4vw,58px);font-weight:700;letter-spacing:-.02em;margin-top:12px;max-width:16ch}
+.hero p{max-width:60ch;color:var(--muted);margin:16px 0 0;font-size:19px}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.rule{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:18px}
+.rule b{display:block;font:700 34px/1 var(--f-display);color:var(--oak)}
+.rule h3{font-size:19px;margin:10px 0 4px}
+.rule p{margin:0;font-size:16px;color:var(--muted);line-height:1.5}
+
+.say{display:flex;gap:10px;align-items:flex-start;background:var(--say);border:1px solid var(--say-edge);border-radius:8px;padding:12px 14px;margin:0}
+.say q{flex:1;min-width:0;font:600 17px/1.45 var(--f-display);quotes:"\201C" "\201D";overflow-wrap:anywhere}
+.copy{font:600 13px var(--f-display);border:1px solid var(--say-edge);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.copy.done{background:var(--oak);color:var(--paper);border-color:var(--oak)}
+
+.daily{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.moment{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:18px;display:grid;gap:10px;align-content:start}
+.moment .when{font:600 13px var(--f-mono);color:var(--bonnet);letter-spacing:.04em;text-transform:uppercase}
+.moment h3{font-size:20px}
+.moment p{margin:0;font-size:16px;color:var(--muted);line-height:1.5}
+
+.picker{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
+.groups{display:grid;gap:18px}
+.group h3{font:600 12px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.tiles{display:grid;gap:6px}
+.tile{display:flex;gap:10px;align-items:center;text-align:left;width:100%;font:500 16px/1.3 var(--f-display);color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:11px 12px;cursor:pointer}
+.tile:hover{border-color:var(--muted)}
+.tile[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 3px 0 0 var(--oak)}
+.tile .tag{font:600 11px var(--f-mono);padding:2px 7px;border-radius:999px;margin-left:auto;white-space:nowrap}
+.tag.buyer{background:var(--bonnet-soft);color:var(--bonnet)} .tag.seller{background:var(--oak-soft);color:var(--oak)} .tag.both{background:var(--flag-soft);color:var(--flag)}
+.detail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px;display:grid;gap:16px;min-width:0}
+.detail h3{font-size:26px}
+.detail .when-line{display:flex;gap:8px;align-items:baseline;font-size:16px;color:var(--flag)}
+.detail .when-line b{font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.kv div{min-width:0}
+.kv h4,.detail h4{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.kv ul,.detail ul{margin:0;padding-left:20px;font-size:16px;line-height:1.5}
+.kv li,.detail li{margin:3px 0}
+.you{background:var(--oak-soft);border-radius:8px;padding:12px 14px}
+.you h4{color:var(--oak)}
+.tip{font-size:16px;color:var(--muted);border-left:3px solid var(--rule);padding-left:12px;margin:0}
+.helper{font:400 13px var(--f-mono);color:var(--muted)}
+
+.journey{display:grid;gap:16px;margin-top:20px}
+.lane{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;min-width:0}
+.lane h3{font-size:18px;margin-bottom:12px}
+.lane.buyer h3{color:var(--bonnet)} .lane.seller h3{color:var(--oak)}
+.steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;list-style:none;margin:0;padding-left:0}
+.steps li{flex:0 0 auto}
+.steps button{font:500 14px/1.25 var(--f-display);text-align:left;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:9px 11px;cursor:pointer;width:150px;min-height:72px;display:grid;gap:4px;align-content:start}
+.steps button span{font:600 11px var(--f-mono);color:var(--muted)}
+.steps button:hover{border-color:var(--muted)}
+
+table.week{width:100%;border-collapse:collapse;font-size:16px;margin-top:18px}
+.table-wrap{overflow-x:auto}
+table.week th,table.week td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+table.week th{font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+table.week td:first-child{font:600 16px var(--f-display);white-space:nowrap}
+
+.practice{display:grid;gap:12px;margin-top:20px}
+.drill{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start}
+.drill input{width:22px;height:22px;margin-top:4px;accent-color:var(--oak)}
+.drill h3{font-size:18px}
+.drill p{margin:4px 0 10px;font-size:16px;color:var(--muted)}
+.drill.done h3{text-decoration:line-through;color:var(--muted)}
+.progress{font:600 14px var(--f-mono);color:var(--oak);margin-top:10px}
+
+.sheet{display:grid;gap:16px;margin-top:20px}
+.sheet fieldset{border:1px solid var(--rule);border-radius:10px;background:var(--panel);margin:0;padding:16px 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;min-width:0}
+.sheet legend{font:700 18px var(--f-display);padding:0 6px}
+.sheet legend span{font:400 14px var(--f-body);color:var(--muted)}
+.sheet label{display:grid;gap:4px;font:600 15px var(--f-display);min-width:0}
+.sheet label.wide{grid-column:1/-1}
+.sheet small{font:400 13px var(--f-body);color:var(--muted)}
+.sheet input,.sheet textarea{font:400 16px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+.sheet textarea{resize:vertical}
+.out{background:var(--say);border:1px solid var(--say-edge);border-radius:10px;padding:16px 18px;min-width:0}
+.out-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.out h3{font-size:18px}
+.out pre{white-space:pre-wrap;overflow-wrap:anywhere;font:400 14px/1.55 var(--f-mono);margin:12px 0 0;max-height:360px;overflow:auto}
+.copy-out{font:600 14px var(--f-display);border:0;background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 16px;cursor:pointer}
+.copy-out.done{background:var(--oak)}
+.out .note{font-size:14px;color:var(--muted);margin:10px 0 0}
+.toolgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.tool{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.tool h3{font-size:20px}
+.tool p{margin:0;font-size:16px;line-height:1.5}
+.tool .small{font-size:14px;color:var(--muted)}
+.musts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.must{background:var(--flag-soft);border-radius:8px;padding:14px 16px}
+.must b{font-family:var(--f-display);display:block;margin-bottom:2px}
+.must span{font-size:16px;line-height:1.5}
+
+.faq{margin-top:16px;display:grid;gap:8px}
+.faq details{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:0 16px}
+.faq summary{cursor:pointer;font:600 17px var(--f-display);padding:14px 0}
+.faq details p,.faq details ol,.faq details ul{margin:0 0 14px;font-size:16px;line-height:1.55}
+.faq code{font:400 14px var(--f-mono);background:var(--paper);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
+
+@media (max-width:860px){
+  .rules,.daily{grid-template-columns:minmax(0,1fr)}
+  .picker{grid-template-columns:minmax(0,1fr)}
+  .detail{position:static}
+  .kv,.musts,.sheet fieldset,.toolgrid{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">For Danielle · real estate assistant · Texas</div>
+    <h1>Just tell it what happened.</h1>
+    <p>Your assistant handles the writing, the checklists and the deadlines, from the first hello to a signed contract. You don't need to learn commands. Talk to it like a helpful coworker, and it figures out which helper to use.</p>
+    <div class="rules">
+      <div class="rule"><b>1</b><h3>Say it your way</h3><p>"I got a new lead." "I just talked to Maria." Messy notes are fine. Paste emails right in.</p></div>
+      <div class="rule"><b>2</b><h3>It drafts, never sends</h3><p>It writes emails, scripts and checklists. Nothing goes to a client until you send it yourself.</p></div>
+      <div class="rule"><b>3</b><h3>You make the calls</h3><p>Read every draft, fill in the [blanks], and use your brokerage's official forms for anything legal.</p></div>
+    </div>
+    <nav class="jump" aria-label="Sections">
+      <a href="#everyday">Every day</a><a href="#make-it-yours">Make it yours</a><a href="#tools">Your tools</a><a href="#what-now">What do I say when…</a><a href="#journey">A client's journey</a><a href="#week">Weekly rhythm</a><a href="#practice">Practice</a><a href="#musts">Must-knows</a><a href="#faq">Questions</a>
+    </nav>
+  </header>
+
+  <section id="everyday">
+    <div class="eyebrow">If you remember nothing else</div>
+    <h2>Three things to say</h2>
+    <div class="daily">
+      <div class="moment"><div class="when">Every morning</div><h3>Get your to-do list</h3><div class="say"><q>What should I do today?</q><button class="copy" type="button">Copy</button></div><p>Up to 7 things, most urgent first: deadlines, new leads, follow-ups. Each one tells you what to say next.</p></div>
+      <div class="moment"><div class="when">After anything happens</div><h3>Tell it what happened</h3><div class="say"><q>I just talked to Maria Lopez. Here are my notes: …</q><button class="copy" type="button">Copy</button></div><p>A call, a showing, an email, an offer, an inspection. It updates the client and tells you the next step.</p></div>
+      <div class="moment"><div class="when">Whenever you're unsure</div><h3>Ask for help</h3><div class="say"><q>Help. What should I do next with the Chens?</q><button class="copy" type="button">Copy</button></div><p>It explains where the client is and starts the right step for you. Ask anything, any time.</p></div>
+    </div>
+  </section>
+
+  <section id="make-it-yours">
+    <div class="eyebrow">One-time setup · about 10 minutes</div>
+    <h2>Make it yours</h2>
+    <p class="lede">The more the assistant knows about you, the more its emails sound like you and fit how you work. Fill in what you can and skip the rest. When you're done, copy the message at the bottom and paste it into the assistant. Update it any time. Your answers stay on this device only.</p>
+    <form class="sheet" id="sheet" autocomplete="off">
+      <fieldset><legend>The basics <span>(it needs these)</span></legend>
+        <label>Your name, as on your license<input id="p-name" name="Name"></label>
+        <label>Brokerage name, as registered with TREC<input id="p-brokerage" name="Brokerage (as registered with TREC)"></label>
+        <label>Business phone<input id="p-phone" name="Phone" inputmode="tel"></label>
+        <label>Business email<input id="p-email" name="Email" inputmode="email"></label>
+        <label>TREC license number<input id="p-license" name="TREC license number"></label>
+        <label>Office address<input id="p-address" name="Brokerage office address"></label>
+        <label class="wide">Link to your brokerage's IABS form <small>Ask your broker for this link</small><input id="p-iabs" name="IABS link"></label>
+      </fieldset>
+      <fieldset><legend>Sound like you</legend>
+        <label>3 words for how you want to come across<small>e.g. warm, upbeat, straightforward</small><input id="p-voice" name="Voice"></label>
+        <label>How you sign off an email<small>e.g. Talk soon, Danielle</small><input id="p-signoff" name="Sign-off"></label>
+        <label>Words or phrases you never use<input id="p-avoid" name="Words to avoid"></label>
+        <label>Languages you speak<input id="p-lang" name="Languages"></label>
+        <label class="wide">Paste a text or email you wrote that sounds like you<textarea id="p-sample" name="Sample of my writing" rows="4"></textarea></label>
+        <label class="wide">About you, in 2–3 sentences, like you'd tell a new client<small>Used in buyer packets and listing presentations. It never makes up sales numbers or awards.</small><textarea id="p-bio" name="About me" rows="3"></textarea></label>
+      </fieldset>
+      <fieldset><legend>Your business</legend>
+        <label>Areas you work<small>cities, neighborhoods, ZIP codes</small><input id="p-areas" name="Areas I work"></label>
+        <label>Clients you focus on<small>e.g. first-time buyers, relocation, VA</small><input id="p-spec" name="Specialties"></label>
+        <label>Typical price range<input id="p-range" name="Typical price range"></label>
+        <label>Your website and social pages<input id="p-web" name="Website and social"></label>
+      </fieldset>
+      <fieldset><legend>Your go-to people</legend>
+        <label>Lenders you refer to <small>list 2 or more</small><input id="p-lenders" name="Lenders"></label>
+        <label>Title companies<input id="p-title" name="Title companies"></label>
+        <label>Home inspectors<input id="p-insp" name="Inspectors"></label>
+        <label>Who you ask when you're unsure<small>your broker or mentor</small><input id="p-broker" name="My broker/mentor"></label>
+        <label>Your MLS name<input id="p-mls" name="MLS" value="HAR"></label>
+        <label>Your CRM<input id="p-crm" name="CRM" value="Follow Up Boss"></label>
+        <label>Other sites you use<input id="p-tools" name="Other tools" value="HAR.com, LoopNet, Crexi, RentSpree"></label>
+        <label class="wide">Your Follow Up Boss stages, in order<small>Copy them from Follow Up Boss so the assistant uses your exact names</small><input id="p-stages" name="My Follow Up Boss stages"></label>
+      </fieldset>
+      <fieldset><legend>How you work</legend>
+        <label>Hours you take calls<small>e.g. 9am–6pm weekdays, 10–2 Saturday</small><input id="p-hours" name="Work hours"></label>
+        <label>Days off<input id="p-off" name="Days off"></label>
+        <label>Day to send sellers their weekly update<input id="p-update" name="Seller update day" placeholder="Friday"></label>
+      </fieldset>
+      <div class="out">
+        <div class="out-head"><h3>Your message to paste</h3><button type="button" class="copy-out" id="copy-out">Copy message</button></div>
+        <pre id="out-text"></pre>
+        <p class="note">Leave commission rates out. They're negotiated with each client, so the assistant never assumes one.</p>
+      </div>
+    </form>
+  </section>
+
+  <section id="tools">
+    <div class="eyebrow">Works alongside what you already use</div>
+    <h2>Your tools</h2>
+    <p class="lede">The assistant can't log in to these sites, but it works well alongside each one. Here's how.</p>
+    <div class="toolgrid">
+      <div class="tool"><h3>Follow Up Boss</h3><p><b>Connected:</b> the assistant can look up your contacts and tasks, add new leads, change stages, and add notes and tasks in Follow Up Boss. Before anything changes, Claude pops up <b>"Allow it?"</b> and nothing happens until you click Allow.</p><p class="small">Not connected yet? You get a short "For Follow Up Boss" note to paste instead. To connect, say "Connect Follow Up Boss" and it walks you through it.</p><div class="say"><q>What do I update in Follow Up Boss?</q><button class="copy" type="button">Copy</button></div><p class="small">First time: say "Bring in my Follow Up Boss contacts" and it sets everyone up.</p></div>
+      <div class="tool"><h3>HAR.com</h3><p>Paste HAR.com lead emails just like any other lead. For home values or home searches, paste or attach a HAR MLS search. MLS data gives the best results.</p><div class="say"><q>New HAR.com lead: [paste the email]</q><button class="copy" type="button">Copy</button></div></div>
+      <div class="tool"><h3>LoopNet & Crexi</h3><p>Commercial inquiries. The assistant writes a professional first reply and asks the right questions (use, size, budget, timing). Commercial deals use different contracts, so bring in your broker early.</p><div class="say"><q>New LoopNet inquiry: [paste the message]</q><button class="copy" type="button">Copy</button></div></div>
+      <div class="tool"><h3>RentSpree</h3><p>For rentals. The assistant helps landlords write fair screening rules, writes the rental listing, and compares RentSpree applications against those rules only. Paste the summaries, never full reports with SSNs.</p><div class="say"><q>RentSpree applications came in for 4410 Willow Creek: [paste each summary]</q><button class="copy" type="button">Copy</button></div></div>
+    </div>
+  </section>
+
+  <section id="what-now">
+    <div class="eyebrow">Pick what just happened</div>
+    <h2>What do I say when…</h2>
+    <p class="lede">Choose a situation to see exactly what to type, what you'll get back, and what's still your job. Swap in your client's real name and details.</p>
+    <div class="picker">
+      <div class="groups" id="groups"></div>
+      <article class="detail" id="detail" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="eyebrow">The big picture</div>
+    <h2>A client's journey, start to finish</h2>
+    <p class="lede">Here's the usual order. Click any step to jump to what to say.</p>
+    <div class="journey" id="journey-lanes"></div>
+  </section>
+
+  <section id="week">
+    <div class="eyebrow">Build the habit</div>
+    <h2>Your weekly rhythm</h2>
+    <div class="table-wrap">
+      <table class="week">
+        <thead><tr><th>When</th><th>Say</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Every morning</td><td>"What should I do today?"</td><td>Nothing slips: new leads, deadlines, follow-ups.</td></tr>
+          <tr><td>Within 5 minutes</td><td>"I got a new lead…" + paste it</td><td>The first agent to reply usually wins the client.</td></tr>
+          <tr><td>After every call</td><td>"I just talked to… here are my notes"</td><td>Keeps every client's file current and sets your next step.</td></tr>
+          <tr><td>End of each day</td><td>"What do I update in Follow Up Boss?"</td><td>Keeps Follow Up Boss matching everything you did today.</td></tr>
+          <tr><td>Mondays</td><td>"Which leads need a follow-up this week?"</td><td>Warm and cold leads get a helpful touch on schedule.</td></tr>
+          <tr><td>Fridays</td><td>"Write the weekly report for [listing address]"</td><td>Sellers who hear from you every week stay happy.</td></tr>
+          <tr><td>Any day under contract</td><td>"Any deadlines this week?"</td><td>Contract deadlines are strict. Missing one can cost your client.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="practice">
+    <div class="eyebrow">Your first week</div>
+    <h2>Practice with pretend clients</h2>
+    <p class="lede">Try these before using real clients. Copy each one into the assistant and see what comes back. Your checkmarks are saved on this device.</p>
+    <div class="practice" id="drills"></div>
+    <div class="progress" id="progress"></div>
+  </section>
+
+  <section id="musts">
+    <div class="eyebrow">Keep yourself safe</div>
+    <h2>Must-knows</h2>
+    <div class="musts">
+      <div class="must"><b>Always read before you send.</b><span>Fill in anything in [brackets] and fix anything that sounds off. The draft is a starting point.</span></div>
+      <div class="must"><b>Use official forms for contracts.</b><span>The assistant gives you a summary of the terms. You put them on your brokerage's TREC forms. It never writes contract language.</span></div>
+      <div class="must"><b>Never type wiring details or SSNs.</b><span>Don't paste bank account numbers, wiring instructions or Social Security numbers into the assistant.</span></div>
+      <div class="must"><b>Your broker has the final word.</b><span>The Texas rules it follows are a guide, not legal advice. When something feels unclear, ask your broker.</span></div>
+      <div class="must"><b>Describe homes, not people.</b><span>Fair housing law: never say who a home is "perfect for", and don't answer "is it safe?" with an opinion. The assistant helps you with this.</span></div>
+      <div class="must"><b>Paperwork before showings.</b><span>In Texas, a buyer signs a written agreement before you show them any home. The assistant reminds you.</span></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="eyebrow">Questions</div>
+    <h2>Common questions</h2>
+    <div class="faq">
+      <details><summary>Do I have to type the exact words on this page?</summary><p>No. These are examples. Say it however feels natural. If it isn't sure what you mean, it asks.</p></details>
+      <details><summary>It's asking me a lot of questions. Is that normal?</summary><p>Yes. It asks instead of guessing, especially about dates, prices and client details. If you don't know an answer, say "I don't know yet" and it leaves a blank to fill later.</p></details>
+      <details><summary>Can it send emails or texts for me?</summary><p>No, on purpose. If Gmail is connected it can save a draft in your Gmail, but you press send. It won't draft a text to anyone who hasn't agreed to receive texts.</p></details>
+      <details><summary>What's in the [brackets]?</summary><p>Things only you know or need to check, like whether a house is still available, a showing time, or your brokerage's address. Fill them in before sending.</p></details>
+      <details><summary>Where does it keep my clients' information?</summary><p>In your real estate folder on the computer, one file per client. You never have to open those files; just ask, for example "What's the latest with the Chens?"</p></details>
+      <details><summary>What's the "IABS" it keeps mentioning?</summary><p>Information About Brokerage Services, a one-page Texas form explaining how agents work. You must share it the first time you talk with someone about a specific home. The assistant puts the link in your first email. Your broker gives you the link.</p></details>
+      <details><summary>Does it update Follow Up Boss for me?</summary><p>Yes, once it's connected with your Follow Up Boss API key, and only after you click <b>Allow</b> on each change. HAR.com, LoopNet, Crexi and RentSpree don't allow outside apps to log in, so for those you paste their emails or searches. Never give the assistant your passwords for any site.</p></details>
+      <details><summary>What is "Allow it?" and should I click it?</summary><p>It appears whenever the assistant wants to change something in Follow Up Boss. Read the one-line summary (for example "update Keisha Brown to stage Appointment Set"). If it's right, click Allow. If not, click Deny and tell the assistant what to fix.</p></details>
+      <details><summary>Do I need to pay for Claude?</summary><p>Yes. This runs in Claude Code, which needs a paid Claude plan. Claude Pro (about $20 a month) is enough. Use your own account, not someone else's, so your clients' information stays in your account.</p></details>
+      <details><summary>Can I change my info later?</summary><p>Yes. Update the boxes in "Make it yours" and paste the new message, or just say something like "My new phone number is …" or "Make my emails a little more formal."</p></details>
+      <details><summary>The first time I use it, it asks for my license number. Why?</summary><p>So every email and ad it writes has your name, your brokerage and your TREC license number on it, as Texas rules require. It only asks once.</p></details>
+      <details><summary>Something looks wrong. What do I do?</summary><p>Tell it, in plain words: "That price is wrong, it's $449,000" or "Make this shorter and friendlier." It fixes it. If you're unsure whether something is allowed, ask your broker.</p></details>
+      <details><summary>For Scott: one-time setup</summary>
+        <ol>
+          <li>Merge the <code>claude/residential-agent-pipeline-btuahk</code> branch into <code>main</code> on GitHub, so the plugin can be installed from the repo.</li>
+          <li>Danielle needs her own paid Claude plan (Pro is enough). On her computer, install Node.js (nodejs.org, the LTS version) and the Claude desktop app, and sign in to her account. On a Mac, use the installer from nodejs.org rather than Homebrew, so the Claude app can find Node. Afterwards, ask the assistant "Is Follow Up Boss connected?" to check that everything works. Create a folder named <code>Danielle Real Estate</code> and open it in Claude Code (the Code tab in the desktop app).</li>
+          <li>Type <code>/plugin marketplace add scottemartin61-dev/scottemartin61-dev.github.io</code>, then <code>/plugin install realtor-pipeline@scottemartin-realty</code>.</li>
+          <li>When the plugin is turned on, it asks for a <b>Follow Up Boss API key</b> (optional). In Follow Up Boss: Admin → API → create a key, then paste it there. It's stored in the computer's secure credential storage, never in the chat. To change it later, turn the plugin off and on again.</li>
+          <li>Optional: connect Gmail, Google Calendar and Zillow in Claude's connector settings, so it can save drafts, add reminders and pull listings.</li>
+          <li>Have Danielle fill in "Make it yours" on this page and paste the message, or type <b>"Help, I'm new"</b> and answer its questions.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <footer>Made for Danielle. The assistant writes drafts and checklists for a licensed agent to review; it isn't legal advice. Confirm Texas rules with your broker or at trec.texas.gov.</footer>
+</div>
+
+<script>
+const S = [
+ {id:"new-lead", g:"New people", tag:"both", t:"Someone new reached out", when:"Right away. Try to reply within 5 minutes.",
+  say:"I got a new lead from Zillow: [paste the whole message here]",
+  get:["A friendly reply email in your voice","A short phone script if you'd rather call","The person saved as a new lead, with a follow-up reminder"],
+  you:["Read the email and fill in any [blanks]","Send it yourself, then tell it \"Sent\""],
+  tip:"Works for HAR.com, Zillow, Realtor.com, LoopNet, Crexi, RentSpree, Follow Up Boss alerts, your website, a sign call, an open-house sign-in or a referral. Paste the whole message.",
+  helper:"lead-responder"},
+ {id:"before-call", g:"New people", tag:"both", t:"I'm about to call a lead", when:"Before your first real conversation.",
+  say:"I'm about to call Maria Lopez. What should I ask?",
+  get:["A short list of questions, only the ones you don't already know the answer to","A friendly way to open the call"],
+  you:["Make the call","Afterward, tell it how it went (next card)"],
+  tip:"First question is always \"Are you already working with an agent?\" If yes, politely end it there.",
+  helper:"lead-qualifier"},
+ {id:"after-call", g:"New people", tag:"both", t:"I just talked to a lead", when:"Right after the call, while it's fresh.",
+  say:"I just talked to Maria Lopez. Here are my notes: [type or paste anything you remember]",
+  get:["Hot, warm or cold: how ready they are, and why","The one next step and when to do it","Questions to ask next time"],
+  you:["Do the next step it suggests, like booking a meeting with a hot lead"],
+  tip:"Messy notes are fine. Voice-to-text on your phone works great for this.",
+  helper:"lead-qualifier"},
+ {id:"not-ready", g:"New people", tag:"both", t:"They're not ready yet", when:"When someone says \"maybe in a few months\".",
+  say:"Maria isn't ready until spring. Help me stay in touch.",
+  get:["A few months of helpful, dated emails (not just \"checking in\")","Reminders for when each one is due"],
+  you:["Approve and send each email when it comes up on your morning list"],
+  tip:"It only plans texts or calls if the person has said that's OK.",
+  helper:"nurture-writer"},
+ {id:"buyer-meeting", g:"Buyers", tag:"buyer", t:"I'm meeting new buyers", when:"A day or two before the meeting, then right after.",
+  say:"I'm meeting buyers Tom and Amy Chen on Thursday. Help me prepare.",
+  get:["A meeting packet: how buying works, the buyer agreement, loan basics, a wish-list worksheet","After the meeting, their saved search: price, size, areas, must-haves"],
+  you:["Bring your brokerage's buyer agreement form. They must sign before you show any home","After the meeting, say: \"Here are my notes from the Chen meeting: …\""],
+  tip:"Texas law: no showings until a written buyer agreement is signed.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"find-homes", g:"Buyers", tag:"buyer", t:"Find homes for my buyers", when:"After the buyer agreement is signed, and weekly after that.",
+  say:"Find homes for the Chens.",
+  get:["A shortlist of homes that fit, best first","Which homes miss a must-have, and why"],
+  you:["Look over the list and send your favorites to the buyers"],
+  tip:"If Zillow isn't connected, paste a list of homes from your MLS search and say \"Use these.\"",
+  helper:"no helper, the assistant does this itself"},
+ {id:"tour", g:"Buyers", tag:"buyer", t:"Plan or recap a showing tour", when:"Before tour day, and right after.",
+  say:"Plan a tour of the top 3 homes for the Chens on Saturday.",
+  get:["A tour plan in driving order, with what to look for at each home","After you say \"We toured: [what they thought]\", an updated shortlist"],
+  you:["Request each showing through the listing agent or showing service","Tell it what the buyers thought"],
+  tip:"If one of the homes is listed by your own brokerage, it reminds you about the extra Texas paperwork.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"make-offer", g:"Buyers", tag:"buyer", t:"My buyers want to make an offer", when:"As soon as they decide on a home.",
+  say:"The Chens want to offer on 12 Oak St. Their max is $490,000.",
+  get:["What the home is likely worth, from recent nearby sales","A suggested price and terms, explained in plain words","Help with counteroffers"],
+  you:["Talk it through with your buyers","Put the agreed terms on the official TREC contract form"],
+  tip:"If the seller counters, just say \"They countered at $485,000\" and it lays out your options.",
+  helper:"cma-analyst + offer-analyst"},
+ {id:"listing-appt", g:"Sellers", tag:"seller", t:"I have a listing appointment", when:"2–3 days before you meet the seller.",
+  say:"I have a listing appointment for 214 Ridge Rd on Tuesday.",
+  get:["What the home is likely worth and a suggested list price","An outline for your presentation to the seller"],
+  you:["Paste recent sales from your MLS for the best result","Present to the seller. The price is always their decision"],
+  tip:"It asks for details like bedrooms, updates and what's included. Bring what you know.",
+  helper:"cma-analyst"},
+ {id:"listing-launch", g:"Sellers", tag:"seller", t:"The seller signed. Time to list!", when:"Right after the listing agreement is signed.",
+  say:"The seller signed! 214 Ridge Rd, list price $449,000, going live October 10.",
+  get:["A dated checklist: paperwork, photos, sign, go-live","The listing description, social posts, an email and flyer text"],
+  you:["Have the seller fill out their disclosure form themselves","Check your MLS rules before posting anything public"],
+  tip:"If a seller wants wording like \"perfect for families\", it explains why that's not allowed and offers better wording.",
+  helper:"listing-writer"},
+ {id:"feedback", g:"Sellers", tag:"seller", t:"Showing feedback came in / weekly update", when:"When feedback arrives, and every Friday.",
+  say:"Here's the showing feedback for 214 Ridge Rd: [paste it]. Write the weekly report.",
+  get:["Feedback saved for each showing","A kind, honest weekly report for the seller, with options if it's time to talk about price"],
+  you:["Read the report and send it to your seller"],
+  tip:"It never tells the seller what to do. It lays out choices backed by real sales.",
+  helper:"feedback-reporter"},
+ {id:"got-offers", g:"Sellers", tag:"seller", t:"We got an offer (or several)", when:"As soon as offers arrive. Check expiration times!",
+  say:"We got two offers on 214 Ridge Rd: [paste each offer's terms]",
+  get:["Offers side by side, soonest expiration first","What your seller would actually take home from each, and which is most likely to close","Fair emails to each buyer's agent"],
+  you:["Present every offer to your seller","Put the accepted terms on the official forms"],
+  tip:"The highest price isn't always the best offer. Cash or a bigger down payment can be safer.",
+  helper:"offer-analyst"},
+ {id:"under-contract", g:"Under contract", tag:"both", t:"We're under contract!", when:"The day the contract is fully signed.",
+  say:"We're under contract on 12 Oak St! Here are the terms: [attach or paste the contract]",
+  get:["Every deadline on one calendar, like the option period, deposits and closing","A checklist of who needs what","A kick-off email to your client, including a wire-fraud warning"],
+  you:["Check every date and number it reads back to you. This is important","Send the kick-off emails"],
+  tip:"Option period = the few days the buyer can back out. It ends at 5 p.m. on the last day, no exceptions.",
+  helper:"deadline-tracker"},
+ {id:"inspection", g:"Under contract", tag:"both", t:"The inspection report came back", when:"The same day. The option period clock is ticking.",
+  say:"The inspection for 12 Oak St came back: [paste the summary and any repair estimates]",
+  get:["Problems sorted by what matters (safety first, cosmetic last)","A short repair request with a timeline that beats the deadline"],
+  you:["Review it with your buyer","Get the agreement signed on the TREC Amendment form before the option period ends"],
+  tip:"Skipping cosmetic items like paint makes the request stronger.",
+  helper:"repair-negotiator"},
+ {id:"deadlines", g:"Under contract", tag:"both", t:"What's due on my deals?", when:"A few times a week while you're under contract.",
+  say:"Any deadlines this week?",
+  get:["Anything missed or at risk, at the top","What's due this week and what info is missing"],
+  you:["Handle the at-risk items first"],
+  tip:"\"What should I do today?\" includes this automatically.",
+  helper:"deadline-tracker"},
+ {id:"rent-tenant", g:"Rentals", tag:"both", t:"Someone wants to rent", when:"Same day, like any new lead.",
+  say:"Kim Lee wants to rent a 3-bedroom in Pearland, up to $2,200 a month, moving in December 1.",
+  get:["Their rental wish list saved","A shortlist of rentals that fit (paste a HAR rental search if Zillow isn't connected)","What paperwork to sign before showings"],
+  you:["Get your brokerage's tenant agreement signed before showing","Send them the application link the landlord's agent provides"],
+  tip:"Never collect ID, Social Security numbers or bank statements through the assistant. RentSpree handles that.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"rent-landlord", g:"Rentals", tag:"seller", t:"A landlord wants to rent out a home", when:"After the owner agrees to work with you.",
+  say:"Linda Park wants to rent out 4410 Willow Creek Dr for $2,100 a month, available December 1.",
+  get:["Written screening rules (income, credit, rental history) to share with every applicant","Rental listing description and a social post","A setup checklist for the RentSpree link and showings"],
+  you:["Share the screening rules with applicants before they pay a fee (Texas law)","Use your brokerage's lease forms"],
+  tip:"Same rules for every applicant, in the order they apply. That keeps you on the right side of fair housing.",
+  helper:"listing-writer"},
+ {id:"rent-apps", g:"Rentals", tag:"seller", t:"RentSpree applications came in", when:"As soon as applications are complete.",
+  say:"RentSpree applications came in for 4410 Willow Creek: [paste each applicant's summary]",
+  get:["Each applicant checked against the written rules: meets, doesn't meet, or needs more info","A summary to share with the landlord"],
+  you:["Present it to the landlord. The owner decides"],
+  tip:"It ignores anything about family, pregnancy, disability or background, and treats a support animal request as something for your broker, not a pet.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"commercial", g:"Commercial", tag:"both", t:"LoopNet or Crexi inquiry", when:"Same day.",
+  say:"New Crexi inquiry: [paste the message]",
+  get:["A short, professional reply","Questions to ask about their use, size, budget and timing","A note to bring in your broker"],
+  you:["Loop in your broker before the first meeting"],
+  tip:"Commercial uses different contracts. The assistant helps with replies, follow-up and organizing, not commercial offers.",
+  helper:"lead-responder"},
+ {id:"fub-import", g:"Follow Up Boss", tag:"both", t:"Bring in my Follow Up Boss contacts", when:"Once at the start, then whenever you want a refresh.",
+  say:"Here's my Follow Up Boss export: [attach the file]",
+  get:["Everyone set up in the assistant, so \"What should I do today?\" knows your whole pipeline","Anyone marked do-not-contact is kept off every list"],
+  you:["In Follow Up Boss: People → select contacts → export, then attach the file"],
+  tip:"It asks once how your stages match up, then remembers.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"fub-update", g:"Follow Up Boss", tag:"both", t:"Update Follow Up Boss", when:"End of each day.",
+  say:"What do I update in Follow Up Boss?",
+  get:["For each client that changed: the stage, tags, a note and the next task, ready to paste"],
+  you:["Connected: click Allow on each change it asks about","Not connected: paste each update into Follow Up Boss, then say \"Done\""],
+  tip:"Prefer a file? Say \"Export for Follow Up Boss\" to get one you can import.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"unsure", g:"Any time", tag:"both", t:"I'm not sure what to do", when:"Any time at all.",
+  say:"Help. What should I do next with the Chens?",
+  get:["Where that client is, in plain words","The one next step, and an offer to start it for you"],
+  you:["Say \"yes\" to let it start"],
+  tip:"You can also say \"Help, I'm new\" to see everything it can do.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"today", g:"Any time", tag:"both", t:"What should I do today?", when:"Every morning.",
+  say:"What should I do today?",
+  get:["Up to 7 things, most urgent first","What to say for each one"],
+  you:["Say \"Start on #1\" and work down the list"],
+  tip:"If nothing's urgent, it suggests calling a few past clients or friends. Referrals are how agents grow.",
+  helper:"lead-qualifier + deadline-tracker"}
+];
+const J = {
+  buyer:["new-lead","after-call","buyer-meeting","find-homes","tour","make-offer","under-contract","inspection","deadlines"],
+  seller:["new-lead","after-call","not-ready","listing-appt","listing-launch","feedback","got-offers","under-contract","deadlines"]
+};
+const DRILLS = [
+  {t:"Set up your profile", d:"Paste your message from \"Make it yours\". Or just say this and it will ask you questions one at a time.", say:"Help, I'm new. Get me set up."},
+  {t:"Answer a pretend Zillow lead", d:"See the reply email it writes. Notice it doesn't text, because the person never agreed to texts.", say:"I got a new lead from Zillow. Name: Maria Alvarez, maria@example.com, (555) 010-2231. Property: 412 Birch Lane, $485,000. Message: Is this still available? We're pre-approved and our lease ends in January. Could we see it this weekend?"},
+  {t:"Score her after a pretend call", d:"See how it decides hot, warm or cold, and what it tells you to do next.", say:"I just talked to Maria Alvarez. Not working with an agent. Pre-approved up to $510k. Lease ends Jan 31, wants to close by then. Likes Birchwood and Maple Heights. Needs 3 bedrooms and a garage. Very responsive."},
+  {t:"Try a lead who isn't ready", d:"A seller who says \"next year\". See the follow-up plan it makes.", say:"I got a website message from Dan Okafor, dokafor@example.com: Thinking about selling our place on Ridge Rd sometime next year. Curious what it might be worth. No rush."},
+  {t:"Try a rental", d:"A landlord who wants to rent out a home. See the screening rules it suggests.", say:"Linda Park wants to rent out 4410 Willow Creek Dr, Pearland, for $2,100 a month, available December 1. 3 bed, 2 bath, small dogs OK."},
+  {t:"Ask for your day", d:"See your to-do list with your pretend clients on it.", say:"What should I do today?"},
+  {t:"Ask what's next", d:"Ask about one pretend client and let it start the next step.", say:"Help. What should I do next with Maria Alvarez?"}
+];
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const sayBox = t => `<div class="say"><q>${esc(t)}</q><button class="copy" type="button">Copy</button></div>`;
+const tagLabel = {buyer:"buyer", seller:"seller", both:"anyone"};
+
+const groups = [...new Set(S.map(s=>s.g))];
+document.getElementById("groups").innerHTML = groups.map(g=>`<div class="group"><h3>${g}</h3><div class="tiles">${
+  S.filter(s=>s.g===g).map(s=>`<button type="button" class="tile" data-id="${s.id}" aria-pressed="false">${esc(s.t)}<span class="tag ${s.tag}">${tagLabel[s.tag]}</span></button>`).join("")}</div></div>`).join("");
+
+function show(id, scroll){
+  const s = S.find(x=>x.id===id) || S[0];
+  document.querySelectorAll(".tile").forEach(b=>b.setAttribute("aria-pressed", b.dataset.id===s.id));
+  document.getElementById("detail").innerHTML = `
+    <div class="eyebrow">${esc(s.g)}</div>
+    <h3>${esc(s.t)}</h3>
+    <div class="when-line"><b>When</b><span>${esc(s.when)}</span></div>
+    <div><h4>Say something like</h4>${sayBox(s.say)}</div>
+    <div class="kv">
+      <div><h4>You'll get</h4><ul>${s.get.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+      <div class="you"><h4>Your part</h4><ul>${s.you.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    </div>
+    <p class="tip">${esc(s.tip)}</p>
+    <div class="helper">Helper behind the scenes: ${esc(s.helper)}</div>`;
+  if(scroll){ const d=document.getElementById("detail"); const top = matchMedia("(max-width:860px)").matches ? d : document.getElementById("what-now"); top.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"}); }
+}
+document.getElementById("groups").addEventListener("click", e=>{ const b=e.target.closest(".tile"); if(b) show(b.dataset.id, matchMedia("(max-width:860px)").matches); });
+show("new-lead", false);
+
+document.getElementById("journey-lanes").innerHTML = ["buyer","seller"].map(k=>`<div class="lane ${k}"><h3>${k==="buyer"?"Helping a buyer":"Helping a seller"}</h3><ol class="steps">${
+  J[k].map((id,i)=>{ const s=S.find(x=>x.id===id); return `<li><button type="button" data-id="${id}"><span>Step ${i+1}</span>${esc(s.t)}</button></li>`; }).join("")}</ol></div>`).join("");
+document.getElementById("journey-lanes").addEventListener("click", e=>{ const b=e.target.closest("button[data-id]"); if(b) show(b.dataset.id, true); });
+
+let done = {}; try { done = JSON.parse(localStorage.getItem("danielle-drills")||"{}"); } catch(e) {}
+function renderDrills(){
+  document.getElementById("drills").innerHTML = DRILLS.map((d,i)=>`<div class="drill${done[i]?" done":""}"><input type="checkbox" id="drill-${i}" ${done[i]?"checked":""} aria-label="Mark '${esc(d.t)}' done"><div><h3><label for="drill-${i}">${i+1}. ${esc(d.t)}</label></h3><p>${esc(d.d)}</p>${sayBox(d.say)}</div></div>`).join("");
+  const n = Object.values(done).filter(Boolean).length;
+  document.getElementById("progress").textContent = n===DRILLS.length ? "All done. You're ready for real clients!" : `${n} of ${DRILLS.length} done`;
+}
+renderDrills();
+document.getElementById("drills").addEventListener("change", e=>{ const m=e.target.id.match(/drill-(\d+)/); if(!m) return; done[m[1]]=e.target.checked; try{localStorage.setItem("danielle-drills",JSON.stringify(done));}catch(err){} renderDrills(); });
+
+const sheet = document.getElementById("sheet");
+const fields = [...sheet.querySelectorAll("input,textarea")];
+let saved = {}; try { saved = JSON.parse(localStorage.getItem("danielle-profile")||"{}"); } catch(e) {}
+fields.forEach(f=>{ if(saved[f.id]) f.value = saved[f.id]; });
+function buildMsg(){
+  const lines = fields.filter(f=>f.value.trim()).map(f=> f.tagName==="TEXTAREA" ? `- ${f.name}:\n${f.value.trim().split("\n").map(l=>"    "+l).join("\n")}` : `- ${f.name}: ${f.value.trim()}`);
+  document.getElementById("out-text").textContent = lines.length
+    ? "Here's my info for my assistant. Please save it to my profile and use it from now on:\n" + lines.join("\n")
+    : "Start filling in the boxes above. Your message builds here as you type.";
+}
+sheet.addEventListener("input", ()=>{ const v={}; fields.forEach(f=>{ if(f.value) v[f.id]=f.value; }); try{localStorage.setItem("danielle-profile",JSON.stringify(v));}catch(e){} buildMsg(); });
+sheet.addEventListener("submit", e=>e.preventDefault());
+buildMsg();
+document.getElementById("copy-out").addEventListener("click", ()=>{
+  const b = document.getElementById("copy-out"), pre = document.getElementById("out-text");
+  const ok = () => { b.textContent="Copied! Now paste it into the assistant"; b.classList.add("done"); setTimeout(()=>{b.textContent="Copy message"; b.classList.remove("done");},2500); };
+  const fallback = () => { const r=document.createRange(); r.selectNodeContents(pre); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent="Selected, press Ctrl+C"; };
+  try { navigator.clipboard.writeText(pre.textContent).then(ok, fallback); } catch(err) { fallback(); }
+});
+
+document.addEventListener("click", e=>{
+  const b = e.target.closest(".copy"); if(!b) return;
+  const q = b.parentElement.querySelector("q"); const text = q.textContent;
+  const ok = () => { b.textContent="Copied"; b.classList.add("done"); setTimeout(()=>{b.textContent="Copy"; b.classList.remove("done");},1600); };
+  const fallback = () => { const r=document.createRange(); r.selectNodeContents(q); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent="Selected, press Ctrl+C"; };
+  try { navigator.clipboard.writeText(text).then(ok, fallback); } catch(err) { fallback(); }
+});
+</script>
