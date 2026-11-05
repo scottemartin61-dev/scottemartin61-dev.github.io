@@ -23,7 +23,7 @@ Done when: no record with qualifying evidence remains unscored or stale.
 
 ## Step 3 — Build the list
 
-Bucket open leads (exclude `lost` and `agreement-signed`), most urgent first:
+Bucket open leads (exclude `lost`, `agreement-signed`, `under-contract`, and `closed` — signed clients are tracked by the client and transaction commands), most urgent first:
 
 1. **Uncontacted** — `status: new` (show hours since `created`).
 2. **Overdue** — `next_action_due` before today.
@@ -33,7 +33,7 @@ Bucket open leads (exclude `lost` and `agreement-signed`), most urgent first:
 
 For each lead show one line: name, temperature, type, next action, due date, best channel allowed by consent, record path.
 
-Then a one-line pipeline count: new / hot / warm / cold / appointment-set / agreement-signed, and leads by source.
+Then a one-line pipeline count: new / hot / warm / cold / appointment-set / agreement-signed / under-contract / closed, and leads by source.
 
 Done when: every open lead appears in exactly one bucket or is counted as "on track".
 

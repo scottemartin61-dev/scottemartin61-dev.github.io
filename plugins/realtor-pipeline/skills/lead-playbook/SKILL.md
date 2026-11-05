@@ -20,7 +20,7 @@ email: jane@example.com
 source: zillow            # zillow | realtor-com | website | referral | open-house | sign-call | social | sphere | fsbo | expired | other
 referred_by:              # name, if a referral
 type: buyer               # buyer | seller | both
-status: new               # new | contacted | qualified | appointment-set | nurture | agreement-signed | lost
+status: new               # new | contacted | qualified | appointment-set | nurture | agreement-signed | under-contract | closed | lost
 temperature: unscored     # hot | warm | cold | unscored
 score:                    # 0-11, see rubric
 timeline:                 # e.g. "60-90 days"

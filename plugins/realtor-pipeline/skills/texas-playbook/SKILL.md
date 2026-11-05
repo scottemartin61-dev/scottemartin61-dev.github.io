@@ -1,6 +1,6 @@
 ---
 name: texas-playbook
-description: Texas-specific real estate rules for license holders — TREC advertising and IABS notice requirements, SB 1968 written buyer agreements and 14-day showing agreements, Texas non-disclosure and CMA data, seller disclosure forms, and Texas telemarketing/text rules. Use whenever the agent profile says state TX, or the user mentions Texas, TREC, IABS, TXR forms, or a Texas city or property.
+description: Texas-specific real estate rules for license holders — TREC advertising and IABS notice requirements, SB 1968 written buyer agreements and 14-day showing agreements, Texas non-disclosure and CMA data, seller disclosure forms, Texas telemarketing/text rules, and TREC contract rules (promulgated forms, option period, earnest money, amendments, statutory termination notices). Use whenever the agent profile says state TX, or the user mentions Texas, TREC, IABS, TXR forms, option period, option fee, or a Texas city or property.
 model: inherit
 ---
 
@@ -73,3 +73,15 @@ On top of federal TCPA / Do-Not-Call rules in lead-playbook:
 ## Fair housing in Texas
 
 The Texas Fair Housing Act (Property Code ch. 301) protects the same classes as federal law. Several Texas cities add more (for example sexual orientation, gender identity, age, veteran status, or source of income in some cities) — apply the strictest rule for the property's city and, if unsure which local classes apply, follow the broader list in lead-playbook.
+
+## Contracts and escrow (stages 5-6)
+
+- **Promulgated forms only.** Texas license holders must use TREC-promulgated contract forms and addenda where one exists (TREC Rule 537.11) and may only fill in blanks with factual business details — never write clauses that change the parties' rights. Typical set: One to Four Family Residential Contract (Resale), Third Party Financing Addendum, Addendum for Property Subject to Mandatory Membership in a Property Owners Association (Subdivision Information), Seller's Disclosure Notice, lead-based paint addendum, Addendum for Sale of Other Property by Buyer, Amendment, Notice of Buyer's Termination of Contract. Use the current version from TREC or the brokerage's forms software.
+- **Option period.** For the option fee, the buyer gets an unrestricted right to terminate within the agreed number of days. Day 1 is the day after the effective date; notice of termination must be given by **5:00 p.m. local time** on the last day. Option fee is not refunded on termination (it is credited to the price at closing). Treat the deadline as absolute — no weekend extension unless the agent confirms the current form says otherwise.
+- **Earnest money and option fee** are delivered to the title company (escrow agent) within **3 days after the effective date**; get the title company's receipt and log it. Late option-fee delivery can void the option.
+- **Repairs belong in the option period.** Repair requests and price or credit changes are agreed on a TREC Amendment signed before the option period ends; after it ends the buyer loses the unrestricted right to terminate. Build the repair-request timeline so the signed Amendment lands at least 1 business day before the option deadline.
+- **Financing.** With a Third Party Financing Addendum, the buyer can terminate if they cannot obtain buyer approval within the days stated — track that date separately from the option deadline.
+- **Title and survey.** The title company delivers the commitment within the period the contract states (20 days after receiving the contract on the current form); buyer objections run from receipt of the commitment, exception documents, and survey. If an existing survey is used, the seller provides it with a T-47 residential real property affidavit by the contract's deadline.
+- **Statutory notices with termination rights.** Seller's Disclosure Notice not delivered before signing → buyer may terminate within **7 days after receiving it**. Subdivision Information under the POA addendum → buyer may terminate within **3 days after receiving it** (or any time before closing if never delivered). The MUD notice (Water Code §49.452) must be given **before the buyer signs** the contract; a missing one gives the buyer termination rights. Track these on `documents_due` with their termination windows.
+- **Intermediary deals** (`side: both`): appointed license holders only; neither may disclose one party's confidential information (price flexibility, motivation) to the other.
+- **Wire fraud.** Texas title companies typically require verbal verification of wiring instructions; reinforce the transaction-playbook warning with each client.

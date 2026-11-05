@@ -39,10 +39,21 @@ Work in a dedicated folder for your business — the plugin keeps records there 
 | `/realtor-pipeline:listing-launch` | Dated prep checklist, Fair-Housing-checked MLS remarks and marketing copy, and launch tasks staged on approval. |
 | `/realtor-pipeline:showing-report` | Logs showing feedback and writes the weekly seller report with price-review signals; refreshes the CMA when signals fire. |
 
+### Stages 5-6 — Offers and under contract
+
+| Command | What it does |
+|---|---|
+| `/realtor-pipeline:offer-prep` | Buyer side: checks readiness (agreement, pre-approval), runs a value check, and recommends price and terms as a terms sheet for the contract. Handles counters. |
+| `/realtor-pipeline:review-offers` | Listing side: logs offers, compares them on estimated net to seller and certainty to close, and stages highest-and-best or counter emails. |
+| `/realtor-pipeline:under-contract` | Turns the executed contract into a confirmed summary, a full deadline calendar, a parties checklist, and client kickoff emails with the wire-fraud warning. |
+| `/realtor-pipeline:repair-request` | Sorts inspection findings into safety / systems / defects / cosmetic, recommends repair, credit, or price reduction per item, and times it to the option or inspection deadline. |
+| `/realtor-pipeline:transaction-status` | Daily board across all pending deals: missed, at risk, due this week, input needed, closing soon — plus optional client updates. |
+
 Behind the commands:
 
-- **Agents** — `lead-responder`, `lead-qualifier`, `nurture-writer`, `cma-analyst`, `listing-writer`, `feedback-reporter`. Each runs in its own context and is limited to reading and writing files; the commands handle connectors, always as drafts you approve.
-- **Playbooks** — `lead-playbook` (lead record format, agent profile, scoring rubric, cadences, compliance guardrails) and `client-playbook` (client folders, CMA method, listing advertising rules, showing feedback format, price-review signals). Edit these two files to match your brokerage's standards.
+- **Agents** — `lead-responder`, `lead-qualifier`, `nurture-writer`, `cma-analyst`, `listing-writer`, `feedback-reporter`, `offer-analyst`, `deadline-tracker`, `repair-negotiator`. Each runs in its own context and is limited to reading and writing files; the commands handle connectors, always as drafts you approve.
+- **Playbooks** — `lead-playbook` (lead record format, agent profile, scoring rubric, cadences, compliance guardrails), `client-playbook` (client folders, CMA method, listing advertising rules, showing feedback format, price-review signals), and `transaction-playbook` (offer terms, multiple offers, net sheets, contract summary, deadline rules, repair categories, wire fraud). Edit these files to match your brokerage's standards.
+- **No contract drafting.** The plugin produces terms sheets, comparisons, calendars, and request lists; you put terms into the required forms.
 
 ## Texas agents
 
@@ -55,6 +66,7 @@ Set `state: TX` in `leads/agent-profile.md` (the plugin asks on first use) and a
 - **Non-disclosure state** CMA handling: portal sold prices marked unverified; MLS closed data required before a CMA goes to a seller; square footage cited to the appraisal district.
 - **Seller disclosures** in the launch checklist: Seller's Disclosure Notice, lead paint, HOA/MUD/PID notices, T-47.
 - **Calls and texts**: Texas calling hours (9am-9pm Mon-Sat, noon-9pm Sun) and SB 140 text-message rules.
+- **Contracts**: TREC-promulgated forms only; option period ends 5:00 p.m. on its last day; earnest money and option fee to the title company within 3 days; repairs agreed on a TREC Amendment before the option ends; Third Party Financing Addendum, title, survey/T-47, Seller's Disclosure, Subdivision Information, and MUD notice deadlines and termination windows tracked.
 
 TREC rules and forms change — confirm exact wording and form versions on trec.texas.gov or with your broker.
 
@@ -66,6 +78,8 @@ Works with plain files alone. If connected, it also uses **Gmail** (find portal 
 
 - Leads: copy a sample from `examples/sample-leads.md` into `/realtor-pipeline:new-lead`.
 - Sellers: copy `examples/sample-listing/` into `listings/`, then run `/realtor-pipeline:listing-appointment 214 Ridge Rd` and `/realtor-pipeline:showing-report 214 Ridge Rd report`.
+- Offers: also copy `examples/sample-offers/214-ridge-rd/` into `listings/214-ridge-rd/offers/` and run `/realtor-pipeline:review-offers 214 Ridge Rd`.
+- Under contract (Texas): copy `examples/sample-transaction/` into `transactions/`, then run `/realtor-pipeline:transaction-status` and `/realtor-pipeline:repair-request 1402 Oak Bend Dr`.
 
 ## Disclaimer
 
