@@ -70,7 +70,17 @@ body.only-buyer .lanes, body.only-seller .lanes{grid-template-columns:minmax(0,1
 .chip{font:600 12px var(--f-mono);padding:3px 8px;border-radius:999px;background:var(--bonnet-soft);color:var(--bonnet);border:0;cursor:pointer}
 .step.seller .chip{background:var(--oak-soft);color:var(--oak)}
 .chip.none{background:var(--code);color:var(--muted);cursor:default}
-.catch-count{font:600 12px var(--f-mono);color:var(--flag)}
+.gist{margin:0;font-size:16px;line-height:1.5}
+.helpers-label{font:600 12px var(--f-mono);color:var(--muted);align-self:center;margin-right:2px}
+.tech{border-top:1px solid var(--rule);padding-top:10px}
+.tech > summary{cursor:pointer;font:600 14px var(--f-display);color:var(--muted)}
+.tech-body{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:12px}
+.glossary{padding:40px 0 0}
+.glossary h2{font-size:26px}
+.glossary dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px 28px;margin:18px 0 0}
+.glossary div{min-width:0}
+.glossary dt{font:600 16px var(--f-display)}
+.glossary dd{margin:2px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
 .more{font:600 13px var(--f-display);color:var(--muted)}
 .step[open] .more{display:none}
 .body{padding:0 16px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
@@ -114,13 +124,13 @@ footer{margin-top:40px;font-size:14px;color:var(--muted);max-width:75ch}
   <header class="intro">
     <div>
       <div class="eyebrow">realtor-pipeline plugin · sample scenario · Round Rock, Texas</div>
-      <h1>One agent, two clients, every stage from first inquiry to contract</h1>
-      <p>This is a real run of the plugin on a fictional scenario. Each card below is a command the agent typed. Open one to see which helper agents did the work, what they produced (quoted from the actual output), and where a compliance rule changed the result. Dates are scenario dates; the run itself happened on __RUNDATE__.</p>
+      <h1>How the assistant helps one agent with two clients</h1>
+      <p>Follow a made-up Texas agent, Sam, as the assistant helps with a buyer and a seller from their first message to a signed contract. Each card is one task. Open it to see what the assistant did and which rules it followed. Everything here came from a real run on __RUNDATE__; the people and houses are invented.</p>
     </div>
     <div class="cast">
-      <div class="who"><i class="dot agent"></i><div><b>Sam Rivera</b><span>Agent at Lakeside Realty LLC, licensed in Texas. Uses the plugin in a business folder; no connectors in this run, so MLS data comes from pasted files.</span></div></div>
-      <div class="who"><i class="dot buyer"></i><div><b>Carlos Mendez · buyer</b><span>Relocating from Houston for a January job. Zillow inquiry on 1402 Oak Bend Dr.</span></div></div>
-      <div class="who"><i class="dot seller"></i><div><b>Dan Okafor · seller</b><span>"Maybe next year" web lead on 214 Ridge Rd who suddenly needs to list.</span></div></div>
+      <div class="who"><i class="dot agent"></i><div><b>Sam Rivera</b><span>A Texas real estate agent. Sam approves everything the assistant writes before it goes out.</span></div></div>
+      <div class="who"><i class="dot buyer"></i><div><b>Carlos Mendez · buyer</b><span>Moving from Houston for a new job. Asked about a house on Zillow.</span></div></div>
+      <div class="who"><i class="dot seller"></i><div><b>Dan Okafor · seller</b><span>Thought he'd sell "next year", then suddenly needed to sell fast.</span></div></div>
     </div>
   </header>
 
@@ -138,10 +148,27 @@ footer{margin-top:40px;font-size:14px;color:var(--muted);max-width:75ch}
 
   <main id="stages"></main>
 
+  <section class="glossary" id="words">
+    <div class="eyebrow">Quick glossary</div>
+    <h2>Words you'll see</h2>
+    <dl>
+      <div><dt>Lead</dt><dd>Someone who might buy or sell. "Hot" means ready now, "warm" means within months, "cold" means a year or more out.</dd></div>
+      <div><dt>IABS notice</dt><dd>A short Texas form explaining how brokers work. Agents must share it the first time they talk with someone about a specific home.</dd></div>
+      <div><dt>Buyer agreement</dt><dd>Since 2026, Texas requires a signed agreement before an agent shows a buyer any home. It states the agent's pay, which is always negotiable.</dd></div>
+      <div><dt>Fair housing</dt><dd>Laws that forbid steering people or describing who "should" live somewhere. Agents describe homes, not neighbors.</dd></div>
+      <div><dt>CMA</dt><dd>A comparison of recent nearby sales that estimates what a home is worth. It is not an appraisal.</dd></div>
+      <div><dt>Option period</dt><dd>In Texas, a few days after signing when the buyer can back out for any reason by paying a small fee. It ends at 5 p.m. on the last day.</dd></div>
+      <div><dt>Earnest money</dt><dd>A good-faith deposit the buyer pays to the title company within 3 days of signing.</dd></div>
+      <div><dt>Title company</dt><dd>The neutral company that holds the money, checks ownership and runs the closing.</dd></div>
+      <div><dt>Net to seller</dt><dd>What the seller actually takes home after the loan payoff, fees and credits.</dd></div>
+      <div><dt>Intermediary</dt><dd>Texas has no "dual agency". If one brokerage represents both buyer and seller, both must agree in writing first.</dd></div>
+    </dl>
+  </section>
+
   <section class="team" id="team">
     <div class="eyebrow">Behind the commands</div>
-    <h2>The helper agents</h2>
-    <p>Each agent runs in its own context and can only read and write files in the business folder. Commands handle connectors and always stage messages as drafts. Click an agent tag on any step to find it here.</p>
+    <h2>The assistant's helpers</h2>
+    <p>Behind the scenes, the assistant hands specific jobs to nine specialist helpers. They can only read and write Sam's files, and nothing is sent without Sam's OK. Click a helper's name on any card to jump here.</p>
     <div class="roster" id="roster"></div>
   </section>
 
@@ -153,23 +180,23 @@ footer{margin-top:40px;font-size:14px;color:var(--muted);max-width:75ch}
 <script>
 const STEPS = __STEPS__;
 const STAGES = [
-  {n:1, t:"First contact", d:"Speed-to-lead replies, consent, and the Texas IABS notice."},
-  {n:2, t:"Qualify & nurture", d:"Scoring on evidence, follow-up cadence, drip plans for leads who aren't ready."},
-  {n:3, t:"Consultation", d:"Buyer packet and SB 1968 agreement; listing appointment with a CMA."},
-  {n:4, t:"Search & market", d:"Shortlists and tours; listing launch, copy, and weekly seller reports."},
-  {n:5, t:"Offers", d:"Offer terms for the buyer; side-by-side comparison for the seller."},
-  {n:6, t:"Under contract", d:"Deadline calendar, option period, repair request."}
+  {n:1, t:"First contact", d:"Answering a new person quickly and correctly."},
+  {n:2, t:"Getting to know them", d:"Figuring out how ready they are, and staying in touch if they're not."},
+  {n:3, t:"First meeting", d:"Preparing for the sit-down with a buyer or seller."},
+  {n:4, t:"House hunting / selling", d:"Finding homes for the buyer; marketing the seller's home."},
+  {n:5, t:"Offers", d:"Deciding what to offer, or which offer to accept."},
+  {n:6, t:"Under contract", d:"Hitting every deadline until closing."}
 ];
 const AGENTS = {
-  "lead-responder":["First replies to new leads, tailored to the source.","Stage 1"],
-  "lead-qualifier":["Scores leads hot, warm, or cold on evidence and sets the next action.","Stage 2"],
-  "nurture-writer":["Writes dated follow-up sequences for leads who aren't ready.","Stage 2"],
-  "cma-analyst":["Comparative market analysis: comps, market pace, value range.","Stages 3-5"],
-  "listing-writer":["MLS remarks and marketing copy, checked against advertising rules.","Stage 4"],
-  "feedback-reporter":["Weekly seller report from showing feedback, with price signals.","Stage 4"],
-  "offer-analyst":["Offer terms for buyers; offer comparison and net sheets for sellers.","Stage 5"],
-  "deadline-tracker":["Computes every contract deadline and flags what is at risk.","Stage 6"],
-  "repair-negotiator":["Turns inspection findings into a prioritized repair request.","Stage 6"]
+  "lead-responder":["Writes the first reply to a new person.","Stage 1"],
+  "lead-qualifier":["Rates how ready someone is: hot, warm or cold.","Stage 2"],
+  "nurture-writer":["Plans helpful follow-up emails for people who aren't ready yet.","Stage 2"],
+  "cma-analyst":["Works out what a home is worth from recent nearby sales.","Stages 3-5"],
+  "listing-writer":["Writes the listing description and ads, and checks them against the rules.","Stage 4"],
+  "feedback-reporter":["Turns showing feedback into a weekly report for the seller.","Stage 4"],
+  "offer-analyst":["Suggests offer terms for buyers and compares offers for sellers.","Stage 5"],
+  "deadline-tracker":["Builds the deadline calendar and warns before anything is late.","Stage 6"],
+  "repair-negotiator":["Turns the inspection report into a short repair request.","Stage 6"]
 };
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 const inline = t => esc(t)
@@ -203,24 +230,32 @@ function md(src){
 const used = new Set(); STEPS.forEach(s=>s.agents.forEach(a=>used.add(a)));
 const catches = STEPS.reduce((n,s)=>n+s.catches.length,0);
 document.getElementById("stats").innerHTML =
-  [[STEPS.length,"commands run"],[used.size,"helper agents used"],[catches,"compliance and judgment catches"],[STEPS.reduce((n,s)=>n+s.files.length,0),"files created or updated"]]
+  [[STEPS.length,"tasks"],[used.size,"helpers used"],[STEPS.reduce((n,s)=>n+s.simple.rules.length,0),"rules followed"],["0","messages sent without Sam's OK"]]
   .map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
 
 function card(s){
-  const chips = s.agents.length ? s.agents.map(a=>`<button type="button" class="chip" data-agent="${esc(a)}" title="See what ${esc(a)} does">${esc(a)}</button>`).join("") : `<span class="chip none">no agent — the command did it</span>`;
+  const S = s.simple;
+  const chips = s.agents.length ? s.agents.map(a=>`<button type="button" class="chip" data-agent="${esc(a)}" title="What does ${esc(a)} do?">${esc(a)}</button>`).join("") : `<span class="chip none">no helper needed</span>`;
   return `<details class="step ${s.track}" id="step-${s.id}">
     <summary>
-      <div class="meta"><span class="who-tag">${s.track==="buyer"?"Carlos · buyer":"Dan · seller"}</span><span>${esc(s.date)}</span>${s.catches.length?`<span class="catch-count">${s.catches.length} catch${s.catches.length>1?"es":""}</span>`:""}</div>
-      <h3>${esc(s.title)}</h3>
-      <div class="meta">${s.commands.map(c=>`<span class="cmd">${esc(c)}</span>`).join("")}</div>
-      <div class="agents">${chips}</div>
-      <span class="more">Open step ▾</span>
+      <div class="meta"><span class="who-tag">${s.track==="buyer"?"Carlos · buyer":"Dan · seller"}</span><span>${esc(s.date)}</span></div>
+      <h3>${esc(S.title)}</h3>
+      <p class="gist">${esc(S.gist)}</p>
+      <div class="agents"><span class="helpers-label">Helpers:</span>${chips}</div>
+      <span class="more">Open ▾</span>
     </summary>
     <div class="body">
-      <div><h4>What happened</h4><ul>${s.happened.map(h=>`<li>${md(h).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>
-      ${s.catches.length?`<div class="catches"><h4>Compliance and judgment catches</h4><ul>${s.catches.map(c=>`<li>${md(c).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>`:""}
-      <div><h4>Key output (verbatim)</h4><div class="output">${md(s.output)}</div></div>
-      ${s.files.length?`<div class="files"><h4>Files</h4>${s.files.map(f=>`<code>${esc(f)}</code>`).join(" · ")}</div>`:""}
+      <div><h4>What the assistant did</h4><ul>${S.did.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+      <div class="catches"><h4>Rules it followed</h4><ul>${S.rules.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+      <details class="tech"><summary>Technical details and the actual output</summary>
+        <div class="tech-body">
+          <div class="meta">${s.commands.map(c=>`<span class="cmd">${esc(c)}</span>`).join("")}</div>
+          <div><h4>Step by step</h4><ul>${s.happened.map(h=>`<li>${md(h).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>
+          ${s.catches.length?`<div><h4>Rules, with citations</h4><ul>${s.catches.map(c=>`<li>${md(c).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>`:""}
+          <div><h4>Actual output (word for word)</h4><div class="output">${md(s.output)}</div></div>
+          ${s.files.length?`<div class="files"><h4>Files</h4>${s.files.map(f=>`<code>${esc(f)}</code>`).join(" · ")}</div>`:""}
+        </div>
+      </details>
     </div>
   </details>`;
 }

@@ -1,0 +1,204 @@
+{
+  "11": {
+    "title": "Carlos asks about a house on Zillow",
+    "gist": "A new buyer asks if a house is available, if he can see it Saturday, and if the area is safe with good schools. The assistant writes Sam a reply to approve.",
+    "did": [
+      "Saved Carlos as a new lead.",
+      "Wrote a friendly reply email and a short phone script for Sam.",
+      "Did not write a text message, because Carlos never said texting was OK.",
+      "After Sam sent the email, it noted the date and set a reminder to follow up."
+    ],
+    "rules": [
+      "Didn't give an opinion on safety or schools. That's a fair housing rule. It pointed Carlos to the police crime map and state school report cards instead.",
+      "Put the Texas brokerage notice (IABS) link right in the email, as Texas requires when you first discuss a specific home.",
+      "Told Carlos a written buyer agreement is needed before any showing (Texas law since 2026).",
+      "Didn't say the house was still available until Sam checked."
+    ]
+  },
+  "12": {
+    "title": "Sam calls Carlos and sizes him up",
+    "gist": "Before the call, the assistant gives Sam a short list of questions. After the call, it scores how ready Carlos is to buy.",
+    "did": [
+      "Made a one-page call script that only asks what Sam doesn't already know.",
+      "Read Sam's call notes: new job in January, pre-approved for $510k, wants to close by mid-December.",
+      "Scored Carlos 9 out of 11: a \"hot\" lead. Next step: book a meeting right away."
+    ],
+    "rules": [
+      "Asked first whether Carlos already had an agent. You can't take another agent's client.",
+      "Only scored what Carlos actually said. Things not discussed were left as questions for next time.",
+      "Marked texting as OK only after Carlos said yes on the call."
+    ]
+  },
+  "13": {
+    "title": "Sam meets Carlos in person",
+    "gist": "The assistant prepares a meeting packet. After the meeting, it saves what Carlos wants in a home.",
+    "did": [
+      "Wrote a meeting packet: how buying works, the buyer agreement, loan options, and a wish-list worksheet.",
+      "After the meeting, saved Carlos's search: up to $500k, 3+ bedrooms, a garage, three Round Rock zip codes.",
+      "Recorded that Carlos signed the buyer agreement, which means tours can now happen."
+    ],
+    "rules": [
+      "Explained the two Texas buyer agreement options: full representation, or a 14-day \"just showing\" agreement.",
+      "Didn't write any contract wording. Sam uses the brokerage's official forms.",
+      "Listed two lenders and said Carlos doesn't have to use either."
+    ]
+  },
+  "14": {
+    "title": "Finding homes that fit",
+    "gist": "The assistant checks five listings against Carlos's wish list and picks the best three.",
+    "did": [
+      "Dropped two homes: one had only a carport, one was outside his areas.",
+      "Ranked the other three and flagged any priced close to his loan limit.",
+      "Noted that one of the homes is listed by Sam's own brokerage."
+    ],
+    "rules": [
+      "Searched only by what Carlos asked for (price, size, garage, area). Never by who lives in a neighborhood.",
+      "Flagged the home listed by Sam's own brokerage. In Texas, both sides must agree in writing before Sam can advise on it.",
+      "Wrote \"unknown, check listing\" instead of guessing missing facts like HOA fees."
+    ]
+  },
+  "15": {
+    "title": "Saturday tours",
+    "gist": "The assistant plans a driving route for three showings, then records what Carlos thought of each house.",
+    "did": [
+      "Planned the tour in driving order, about 45 minutes per house.",
+      "Logged Carlos's reactions. Oak Bend got a 5 out of 5 and he'd make an offer. Pecan Hollow is the backup.",
+      "Offered to check Oak Bend's value now; Sam chose to wait until the offer."
+    ],
+    "rules": [
+      "Checked the buyer agreement was signed before planning any tour.",
+      "Didn't contact any listing agents itself. Sam asks for the showings.",
+      "Tour notes describe the houses (\"busy road\", \"dated\"), never the neighbors."
+    ]
+  },
+  "16": {
+    "title": "Making an offer on Oak Bend",
+    "gist": "The assistant checks what the house is worth and suggests an offer. The seller counters, and they agree on $482,000.",
+    "did": [
+      "Compared recent nearby sales. The house is worth about $478k–$492k, most likely $485k.",
+      "Suggested opening at $480,000 with normal protections.",
+      "The seller countered at $485k. Carlos countered at $482k and the seller said yes."
+    ],
+    "rules": [
+      "Didn't suggest paying extra if the appraisal comes in low, because Carlos wouldn't have enough cash left.",
+      "Produced a summary of terms only. Sam fills in the official Texas contract form.",
+      "No \"love letter\" to the seller, since those can cause fair housing problems.",
+      "Spotted that Carlos's budget for this house ($490k) differed from his saved search ($500k), and asked instead of guessing."
+    ]
+  },
+  "17": {
+    "title": "Under contract: the clock starts",
+    "gist": "The contract is signed. The assistant turns it into a calendar of every deadline so nothing gets missed.",
+    "did": [
+      "Read back every date and dollar amount for Sam to confirm.",
+      "Built the deadline calendar: deposits due 11/5, the option period (Carlos's window to back out) ends 11/9 at 5 p.m., closing 12/4.",
+      "Drafted a kick-off email to Carlos and emails to the title company and lender."
+    ],
+    "rules": [
+      "Used only numbers from the signed contract and guessed nothing.",
+      "Treated the 5 p.m. option deadline as fixed. Missing it costs Carlos his easy way out.",
+      "Two seller deadlines fall on a Saturday, so it showed both possible dates and asked Sam's broker.",
+      "Warned Carlos about wire fraud: always call the title company to confirm wiring instructions."
+    ]
+  },
+  "18": {
+    "title": "The inspection finds problems",
+    "gist": "With only two business days left in the option period, the assistant turns the inspection report into a short, focused repair request.",
+    "did": [
+      "Confirmed the deposits arrived on time, so Carlos's right to back out still holds.",
+      "Sorted 10 findings: 3 safety fixes, 2 big-ticket items (AC and roof, $7,950 credit), 2 other defects, 3 cosmetic items skipped.",
+      "Set a plan: send today, seller answers by Friday noon, decide by Monday noon if needed."
+    ],
+    "rules": [
+      "Timed everything so the signed agreement lands a day before the deadline.",
+      "Only used dollar amounts from real estimates. The rest say \"estimate needed\".",
+      "Left out cosmetic items like paint, because they weaken a repair request.",
+      "Quoted the inspector's words instead of interpreting them."
+    ]
+  },
+  "21": {
+    "title": "Dan might sell \"next year\"",
+    "gist": "A homeowner fills out a website form saying he might sell sometime next year. The assistant writes a reply.",
+    "did": [
+      "Saved Dan as a new seller lead.",
+      "Wrote a reply email offering to talk about his home's value.",
+      "No text or call script, since Dan didn't give a phone number."
+    ],
+    "rules": [
+      "Included the Texas brokerage notice (IABS) link in the email.",
+      "Didn't guess a price for his home before doing a proper analysis.",
+      "Put the broker's name and license number in the signature, as Texas advertising rules require."
+    ]
+  },
+  "22": {
+    "title": "Not ready yet: staying in touch",
+    "gist": "Dan says spring or summer. The assistant marks him as a \"cold\" lead and plans a few months of helpful emails.",
+    "did": [
+      "Scored Dan 4 out of 11, which counts as cold.",
+      "Wrote seven monthly emails with useful info, not just \"checking in\".",
+      "A few emails ask politely for his phone number."
+    ],
+    "rules": [
+      "Email only, since Dan hasn't agreed to calls or texts.",
+      "Every email has an unsubscribe line and the brokerage address, as email law requires.",
+      "Sam corrected the score: Dan's reason (moving near family) counts and is fine to record."
+    ]
+  },
+  "23": {
+    "title": "Dan suddenly wants to list now",
+    "gist": "Dan bought a home in Dallas and wants to sell fast. The assistant re-scores him and prepares for the listing meeting.",
+    "did": [
+      "Moved Dan from cold to hot and stopped the email plan.",
+      "Compared recent nearby sales and recommended listing at $449,000.",
+      "Wrote an outline for Sam's listing presentation."
+    ],
+    "rules": [
+      "Left out a sale that happened after this date, so the analysis only uses what Sam could know then.",
+      "Didn't invent price adjustments it had no local numbers for.",
+      "Labeled the analysis \"not an appraisal\" and left the price decision to Dan."
+    ]
+  },
+  "24": {
+    "title": "Getting the listing live",
+    "gist": "Dan signs and picks $449,000. The assistant writes a launch checklist and all the marketing copy.",
+    "did": [
+      "Made a dated checklist: paperwork, photos, the sign, going live on 10/10.",
+      "Wrote the MLS description, three social posts, an email and flyer bullets.",
+      "Turned down Dan's wording \"perfect for a growing family\" and \"master suite\", and gave Sam a simple explanation for Dan."
+    ],
+    "rules": [
+      "Fair housing: listings describe the house, not who should live there.",
+      "Uses \"primary bedroom\" instead of \"master\".",
+      "The broker's name goes on every ad, as Texas requires.",
+      "Described the kitchen honestly as original."
+    ]
+  },
+  "25": {
+    "title": "How's the listing doing?",
+    "gist": "After four showings and no offers, the assistant writes Dan an honest weekly report.",
+    "did": [
+      "Logged what each buyer's agent said. All four mentioned the dated kitchen.",
+      "Flagged three signs that it's time to talk about price or the kitchen.",
+      "Gave Dan three options, each backed by a nearby sale, and left the choice to him."
+    ],
+    "rules": [
+      "Recorded feedback about the house only, nothing about the buyers.",
+      "Presented price signals as a conversation, not a demand.",
+      "Refused to peek at offers dated after the report date."
+    ]
+  },
+  "26": {
+    "title": "Three offers at once",
+    "gist": "Three offers arrive. The assistant compares what Dan would actually take home and how likely each is to close. Dan picks the cash offer.",
+    "did": [
+      "Lined up all three offers by when they expire.",
+      "Estimated Dan's take-home for each. The highest price ($452k) only nets about $3.6k more, and it's the riskiest.",
+      "Dan accepts the $438k cash offer and asks the $445k buyer to be the backup."
+    ],
+    "rules": [
+      "Compared take-home money and certainty, not just price.",
+      "Never shared one buyer's offer with another. Two agents from the same office got separate emails.",
+      "Noticed none of the offers listed an option fee. It has to be filled in before Dan signs."
+    ]
+  }
+}

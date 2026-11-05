@@ -4,7 +4,8 @@ A real run of the plugin on a fictional Round Rock, Texas scenario: agent Sam Ri
 
 - `scenario/` — the run rules, buyer and seller scripts, agent profile, and input data (MLS-style comps, search results, showings, offers, inspection).
 - `step-logs/` — one log per command: what happened, verbatim key output, compliance catches, files.
-- `index.html` — the interactive walkthrough page built from the logs.
+- `simple.json` — the plain-language version of each step shown first on the page (title, gist, what it did, rules it followed).
+- `index.html` — the interactive walkthrough page built from the logs and `simple.json`.
 
 To rebuild the page after a new run:
 

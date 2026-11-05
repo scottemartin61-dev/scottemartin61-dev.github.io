@@ -86,6 +86,11 @@ for f in sorted(log_dir.glob("*.md")):
         "files": [x.strip("` ") for x in re.findall(r"`[^`]+`", get("files"))] or bullets(get("files")),
     })
 
+simple_path = log_dir.parent / "simple.json"
+if simple_path.exists():
+    simple = json.loads(simple_path.read_text())
+    for st in steps:
+        st["simple"] = simple[str(st["id"])]
 html = template.replace("__STEPS__", json.dumps(steps, ensure_ascii=False).replace("</", "<\\/")).replace("__RUNDATE__", run_date)
 out.write_text(html)
 print(f"{len(steps)} steps -> {out}")
