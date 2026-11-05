@@ -1,0 +1,14 @@
+{
+  "name": "scottemartin-realty",
+  "owner": {
+    "name": "Scott Martin"
+  },
+  "description": "Claude plugins for residential real estate agents.",
+  "plugins": [
+    {
+      "name": "realtor-pipeline",
+      "source": "./plugins/realtor-pipeline",
+      "description": "Assistant agents for residential real estate agents: speed-to-lead replies, lead qualification, nurture sequences, daily lead review."
+    }
+  ]
+}

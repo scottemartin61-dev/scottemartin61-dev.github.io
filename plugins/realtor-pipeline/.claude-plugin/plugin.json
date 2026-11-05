@@ -1,0 +1,10 @@
+{
+  "name": "realtor-pipeline",
+  "displayName": "Realtor Pipeline",
+  "version": "0.1.0",
+  "description": "Assistant agents for residential real estate agents. Stage 1-2 coverage: speed-to-lead replies, lead qualification and hot/warm/cold scoring, nurture sequences, and a daily lead review.",
+  "author": {
+    "name": "Scott Martin"
+  },
+  "keywords": ["real-estate", "realtor", "leads", "crm", "lead-qualification", "nurture"]
+}
