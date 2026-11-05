@@ -6,7 +6,7 @@ model: inherit
 
 # Texas playbook
 
-Applies when `state: TX` in `leads/agent-profile.md`. Adds to the `realtor-pipeline:lead-playbook` and `realtor-pipeline:client-playbook` skills; where a rule here is stricter, this file wins. Rules cite their source so the agent and broker can check them — TREC rules and forms change, so when a step depends on exact wording or a form version, tell the user to confirm on trec.texas.gov or with their broker. Never present this as legal advice.
+Applies when `state: TX` in `leads/agent-profile.md`. Approved changes to these rules are logged in plain English in `realtor-pipeline:texas-updates`; the daily TREC check proposes edits here and adds an entry there. Adds to the `realtor-pipeline:lead-playbook` and `realtor-pipeline:client-playbook` skills; where a rule here is stricter, this file wins. Rules cite their source so the agent and broker can check them — TREC rules and forms change, so when a step depends on exact wording or a form version, tell the user to confirm on trec.texas.gov or with their broker. Never present this as legal advice.
 
 ## Agent profile (Texas fields)
 
