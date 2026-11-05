@@ -89,7 +89,7 @@ Sort inspection findings into four groups and ask accordingly:
 | Material defects | drainage, wood rot, active pests | repair or credit |
 | Cosmetic / maintenance | paint, caulk, minor wear | usually don't ask — weakens the request |
 
-Credits are capped by the loan program and lender (typically to the buyer's closing costs and prepaids) — tell the agent to confirm with the lender before offering a credit instead of a price reduction. Use contractor estimates when supplied; otherwise `[estimate needed]`, never an invented number.
+Every loan type caps seller credits — conventional (by down payment and occupancy), FHA, VA, and USDA alike — and a credit can never exceed the buyer's actual closing costs and prepaids. Never say a loan type has no cap; tell the agent to confirm the cap with the lender before choosing a credit over a price reduction. Use contractor estimates when supplied; otherwise `[estimate needed]`, never an invented number.
 
 ## Appraisal gap
 

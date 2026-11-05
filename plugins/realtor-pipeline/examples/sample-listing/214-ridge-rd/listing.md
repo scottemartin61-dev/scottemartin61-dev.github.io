@@ -1,5 +1,5 @@
 ---
-address: 214 Ridge Rd, Springfield, ST 00000
+address: 214 Ridge Rd, Round Rock, TX 78664
 seller: Dan Okafor            # fictional sample
 status: active
 list_price: 449000
