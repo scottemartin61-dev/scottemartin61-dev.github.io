@@ -25,7 +25,7 @@ Done when: exactly one record holds this inquiry.
 ## Step 3 — Gather context for the reply
 
 - If the lead asked about a specific property and a Zillow or listing connector is available, look up its details (price, beds/baths, status) to pass to the responder.
-- Read the agent's name, brokerage, and signature from `leads/agent-profile.md` if it exists. If it doesn't, ask once for name, brokerage, phone, and license number, and save them there for next time.
+- Read the agent's name, brokerage, and signature from `leads/agent-profile.md` if it exists. If it doesn't, ask once for name, brokerage, phone, license number, and licensing state, and save them there for next time. For `state: TX`, also ask for the TREC-registered broker name and the IABS link (see `realtor-pipeline:texas-playbook`).
 
 Done when: property details (or "none available") and agent profile are in hand.
 
@@ -40,6 +40,6 @@ Done when: drafts are shown and the "Fill before sending" list is either empty o
 Ask which draft to use and accept edits. Then, only on the user's go-ahead:
 - Gmail available → create a Gmail **draft** (never send) addressed to the lead, as a reply in the original thread when there is one.
 - Google Calendar available → create a reminder event "Follow up: <name>" at the playbook's next-touch time.
-- Once the user confirms the message went out, set `status: contacted`, `last_contact: <today>`, and log it.
+- Once the user confirms the message went out, set `status: contacted`, `last_contact: <today>`, and log it. In Texas, when the reply included the IABS, also set `iabs_provided: <today>` and log how it was delivered.
 
 Done when: the user has a staged draft (or copied the text) and the record reflects what was sent. Finish by offering `/realtor-pipeline:qualify-lead` for the first conversation.

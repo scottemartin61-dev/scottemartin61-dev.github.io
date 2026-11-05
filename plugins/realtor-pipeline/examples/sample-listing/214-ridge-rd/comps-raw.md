@@ -12,7 +12,7 @@
 ## Active
 | Address | List | Beds | Baths | Sqft | DOM |
 |---|---|---|---|---|---|
-| 220 Ridge Rd | 435,000 | 3 | 2 | 1,700 | 8 |
+| 220 Ridge Rd | 435,000 | 3 | 2 | 1,700 | 22 |
 | 40 Hilltop Ct | 465,000 | 3 | 2 | 1,800 | 33 |
 
 ## Pending

@@ -38,6 +38,7 @@ created: 2026-11-05
 last_contact:
 next_action:
 next_action_due:
+iabs_provided:            # Texas only: date the IABS notice was given
 client_folder:            # buyers/<stem>/ or listings/<street-slug>/ once a client (see client-playbook)
 ---
 
@@ -52,7 +53,7 @@ Keep the frontmatter current on every touch: update `status`, `last_contact`, `n
 
 ## Agent profile
 
-`leads/agent-profile.md` holds the agent's details in frontmatter, collected once and reused by every skill: `name`, `brokerage`, `brokerage_address`, `phone`, `email`, `license`, and optionally `mls_remarks_limit` (default 1000), `lenders` (list of names for referrals), and `adjustments` (local CMA values, e.g. `bath: 10000`, `garage_bay: 8000`). Ask for a missing field when a task needs it and save the answer.
+`leads/agent-profile.md` holds the agent's details in frontmatter, collected once and reused by every skill: `name`, `brokerage`, `brokerage_address`, `phone`, `email`, `license`, `state` (two-letter code of the agent's license; `TX` turns on the `realtor-pipeline:texas-playbook` rules and its extra profile fields), and optionally `mls_remarks_limit` (default 1000), `lenders` (list of names for referrals), and `adjustments` (local CMA values, e.g. `bath: 10000`, `garage_bay: 8000`). Ask for a missing field when a task needs it and save the answer.
 
 ## Scoring rubric
 
@@ -86,7 +87,7 @@ Every touch should give something (a listing, a number, an answer) — never a b
 
 ## Guardrails
 
-These are compliance rules agents are tempted to bend to sound helpful. Hold them.
+These are compliance rules agents are tempted to bend to sound helpful. Hold them. They are the U.S. baseline: when the profile's `state` is `TX`, the `realtor-pipeline:texas-playbook` rules also apply and win where stricter (IABS notice, SB 1968 buyer agreements, TREC advertising, Texas calling hours and text rules).
 
 - **Fair Housing.** Never steer, and never describe neighborhoods, schools, or buyers by race, color, religion, sex (including orientation and gender identity), disability, familial status, national origin, or state-protected classes. "Is it a safe area?" / "good schools?" / "who lives there?" → point to objective sources (police crime maps, state school report cards, census data) and let the client decide. Don't write "perfect for young families", "exclusive", "walking distance" to a church, or similar coded phrases.
 - **Consent before texts and calls (TCPA / Do-Not-Call).** Text or auto-dial only leads with `consent.sms: yes` or who contacted the agent by text first. Honor STOP and unsubscribe immediately and record it. Cold calls to FSBO / expired leads require a DNC registry check first. Call only 8am-9pm in the lead's local time.

@@ -44,6 +44,20 @@ Behind the commands:
 - **Agents** — `lead-responder`, `lead-qualifier`, `nurture-writer`, `cma-analyst`, `listing-writer`, `feedback-reporter`. Each runs in its own context and is limited to reading and writing files; the commands handle connectors, always as drafts you approve.
 - **Playbooks** — `lead-playbook` (lead record format, agent profile, scoring rubric, cadences, compliance guardrails) and `client-playbook` (client folders, CMA method, listing advertising rules, showing feedback format, price-review signals). Edit these two files to match your brokerage's standards.
 
+## Texas agents
+
+Set `state: TX` in `leads/agent-profile.md` (the plugin asks on first use) and add your TREC-registered `broker_name`, any registered `team_name`, and `iabs_url`. The `texas-playbook` skill then applies across every command:
+
+- **IABS notice** in the body of the first reply about a specific property, with delivery logged (Occ. Code §1101.558, TREC Rule 531.20).
+- **SB 1968 buyer agreements** (effective Jan 1, 2026): tours are blocked until a written representation agreement or a 14-day showing-only agreement is on file; consultation packets explain the required terms.
+- **Intermediary** flags for in-house listings — Texas has no dual agency.
+- **TREC advertising** (Rule 535.155): broker name on every ad at half the size of the largest agent/team contact info; IABS and Consumer Protection Notice links on websites and profiles.
+- **Non-disclosure state** CMA handling: portal sold prices marked unverified; MLS closed data required before a CMA goes to a seller; square footage cited to the appraisal district.
+- **Seller disclosures** in the launch checklist: Seller's Disclosure Notice, lead paint, HOA/MUD/PID notices, T-47.
+- **Calls and texts**: Texas calling hours (9am-9pm Mon-Sat, noon-9pm Sun) and SB 140 text-message rules.
+
+TREC rules and forms change — confirm exact wording and form versions on trec.texas.gov or with your broker.
+
 ## Connectors (optional)
 
 Works with plain files alone. If connected, it also uses **Gmail** (find portal leads, create drafts — never sends), **Google Calendar** (reminders, appointments, tour holds), and **Zillow** (property details, comps, active-listing search). Your own MLS data beats portal data — paste an export whenever you have one.

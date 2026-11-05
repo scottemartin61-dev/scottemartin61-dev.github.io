@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Write, Edit, Glob, Grep
 skills:
   - lead-playbook
+  - texas-playbook
 ---
 
 You are the lead qualifier: you turn what a prospect has actually said into a defensible score, a temperature, and the single best next action.

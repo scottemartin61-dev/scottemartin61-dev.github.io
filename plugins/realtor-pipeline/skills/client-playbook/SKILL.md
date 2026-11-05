@@ -6,7 +6,7 @@ model: inherit
 
 # Client playbook
 
-Stages 3-4 of the pipeline: consultation, then active search (buyers) or active marketing (sellers). Extends the `realtor-pipeline:lead-playbook` skill, whose record format, `leads/agent-profile.md`, and guardrails still apply — load it too if it is not in context. Broker and state rules win over anything here.
+Stages 3-4 of the pipeline: consultation, then active search (buyers) or active marketing (sellers). Extends the `realtor-pipeline:lead-playbook` skill, whose record format, `leads/agent-profile.md`, and guardrails still apply — load it too if it is not in context. For Texas agents (`state: TX`), also load `realtor-pipeline:texas-playbook`: it changes buyer-agreement, CMA-data, advertising, and disclosure steps below. Broker and state rules win over anything here.
 
 ## Folders
 
@@ -45,7 +45,7 @@ mls_number:
 expires:                      # listing agreement expiration
 ```
 
-`search.md` keeps criteria in frontmatter (`price_max`, `beds_min`, `baths_min`, `areas`, `must_haves`, `nice_to_haves`, `deal_breakers`, `pre_approval_amount`, `agreement_signed: yes|no`, `agreement_expires`) and a body with `## Shortlist` and `## Tour log`.
+`search.md` keeps criteria in frontmatter (`price_max`, `beds_min`, `baths_min`, `areas`, `must_haves`, `nice_to_haves`, `deal_breakers`, `pre_approval_amount`, `agreement_signed: yes|no`, `agreement_expires`, and in Texas `showing_agreement_expires` for a showing-only agreement) and a body with `## Shortlist` and `## Tour log`.
 
 ## CMA method
 
@@ -86,7 +86,7 @@ Rules of thumb for the weekly seller report — present them as signals for a co
 
 | Signal | Suggests |
 |---|---|
-| Few showings after 2 weeks in a balanced or seller's market | price or online presentation is off — check photos, then price |
+| Few showings (under 2 a week) after 2 weeks in a balanced or seller's market | price or online presentation is off — check photos, then price |
 | 10+ showings, no offers | price relative to condition — buyers see it and pass |
 | Repeated identical objection | fix it (repair, staging, credit) or price for it |
 | New competing listing priced below | position against it |

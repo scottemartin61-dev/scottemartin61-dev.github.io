@@ -11,7 +11,7 @@ Load the `realtor-pipeline:client-playbook` and `realtor-pipeline:lead-playbook`
 
 ## Step 1 — Load the buyer
 
-Read `search.md` and the lead record. If `agreement_signed` is not `yes`, warn that tours require a signed written buyer agreement and keep going for search only. Pick the mode from the arguments; default `search`.
+Read `search.md` and the lead record. If `agreement_signed` is not `yes`, warn that tours require a signed written buyer agreement and keep going for search only. **Texas:** tour-plan mode is blocked unless `agreement_signed: yes` or `showing_agreement_expires` is in the future (Occ. Code §1101.563 — showing without one is grounds for TREC discipline); under a showing-only agreement, tour sheets and notes contain access logistics and the buyer's own reactions only — no pricing opinions or advice. Load `realtor-pipeline:texas-playbook` for Texas agents. Pick the mode from the arguments; default `search`.
 
 Done when: criteria are loaded and the mode is set.
 
@@ -19,7 +19,7 @@ Done when: criteria are loaded and the mode is set.
 
 1. With a Zillow connector, call the property search with the saved criteria: areas as regions, price max, beds/baths minimums, and must-haves that map to filters. Send only criteria the buyer stated — never add filters for neighborhood demographics or anything tied to a protected class. Without a connector, ask the user to paste listings or an MLS export.
 2. Score each result: must-haves met (any miss = drop, listed separately), nice-to-haves met, price vs. pre-approval (flag anything over 95% of the pre-approval amount), days on market.
-3. Add the top matches to `## Shortlist` in `search.md` as `- [ ] <address> — $price — beds/baths/sqft — score n — <why> — <link>`, skipping addresses already listed. Mark price changes on existing entries.
+3. Add the top matches to `## Shortlist` in `search.md` as `- [ ] <address> — $price — beds/baths/sqft — score n — <why> — <link>`, skipping addresses already listed. Mark price changes on existing entries. In Texas, tag any home listed by the agent's own brokerage "In-house — intermediary consent required".
 
 Show the new matches table and offer to draft an email to the buyer with them (Gmail draft only).
 

@@ -17,7 +17,7 @@ Done when: `listing.md` has `list_price`, `list_date`, and `expires`.
 
 ## Step 2 — Prep checklist
 
-Write `listings/<slug>/launch.md` with a dated checklist working back from list date: seller disclosures signed, repairs, cleaning/declutter, staging, photography / video / floor plan booked, sign and lockbox, MLS input with agent-only remarks, MLS marketing-rule check (Clear Cooperation / coming-soon), showing service set up, open house dates.
+Write `listings/<slug>/launch.md` with a dated checklist working back from list date: seller disclosures signed, repairs, cleaning/declutter, staging, photography / video / floor plan booked, sign and lockbox, MLS input with agent-only remarks, MLS marketing-rule check (Clear Cooperation / coming-soon), showing service set up, open house dates. Texas listings add every item in the texas-playbook seller disclosures section (Seller's Disclosure Notice, lead paint if pre-1978, HOA/MUD/PID notices, T-47 if reusing a survey, net sheet) and an advertising check that the TREC broker name appears in the sign and every ad.
 
 Done when: every checklist item has a date on or before list date.
 
