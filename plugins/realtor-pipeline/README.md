@@ -79,6 +79,7 @@ Works with plain files alone. If connected, it also uses **Gmail** (find portal 
 - Leads: copy a sample from `examples/sample-leads.md` into `/realtor-pipeline:new-lead`.
 - Sellers: copy `examples/sample-listing/` into `listings/`, then run `/realtor-pipeline:listing-appointment 214 Ridge Rd` and `/realtor-pipeline:showing-report 214 Ridge Rd report`.
 - Offers: also copy `examples/sample-offers/214-ridge-rd/` into `listings/214-ridge-rd/offers/` and run `/realtor-pipeline:review-offers 214 Ridge Rd`.
+- Full scenario: see `examples/walkthrough/` for a complete buyer and seller run with an interactive page.
 - Under contract (Texas): copy `examples/sample-transaction/` into `transactions/`, then run `/realtor-pipeline:transaction-status` and `/realtor-pipeline:repair-request 1402 Oak Bend Dr`.
 
 ## Disclaimer

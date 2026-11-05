@@ -1,0 +1,254 @@
+<title>Realtor Pipeline Walkthrough</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a case-file walkthrough — stage rail on the left, buyer and seller tracks as two lanes of step cards, each opening into the real output. */
+:root{
+  --paper:#f6f7f4; --panel:#ffffff; --ink:#1c2420; --muted:#5d6a63; --rule:#d9ded8;
+  --oak:#3f6b4c; --oak-soft:#e3ece5; --bonnet:#3d58a8; --bonnet-soft:#e4e9f6;
+  --flag:#a4561c; --flag-soft:#f6e9de; --code:#eef1ec;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121714; --panel:#1a211d; --ink:#e4ebe6; --muted:#9aa89f; --rule:#2c3630;
+  --oak:#7fb08c; --oak-soft:#1f3226; --bonnet:#93a8e6; --bonnet-soft:#1d2540;
+  --flag:#e39a62; --flag-soft:#3a2617; --code:#202923; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121714; --panel:#1a211d; --ink:#e4ebe6; --muted:#9aa89f; --rule:#2c3630;
+  --oak:#7fb08c; --oak-soft:#1f3226; --bonnet:#93a8e6; --bonnet-soft:#1d2540;
+  --flag:#e39a62; --flag-soft:#3a2617; --code:#202923; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.15;margin:0}
+.eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header.intro{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;align-items:end;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+header.intro h1{font-size:clamp(34px,5vw,56px);font-weight:700;letter-spacing:-.02em;margin-top:10px}
+header.intro p{max-width:62ch;color:var(--muted);margin:14px 0 0}
+.cast{display:grid;gap:10px}
+.who{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 14px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.who b{font-family:var(--f-display);font-weight:600}
+.who span{color:var(--muted);font-size:14px;line-height:1.45;display:block}
+.dot{width:12px;height:12px;border-radius:50%;margin-top:6px}
+.dot.agent{background:var(--ink)} .dot.buyer{background:var(--bonnet)} .dot.seller{background:var(--oak)}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin:28px 0 8px}
+.stat b{display:block;font:700 30px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding:14px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.controls .label{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--panel)}
+.seg button{font:600 14px var(--f-display);border:0;background:none;color:var(--ink);padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible,.step summary:focus-visible,.chip:focus-visible{outline:2px solid var(--bonnet);outline-offset:2px}
+.toggle-all{margin-left:auto;font:600 14px var(--f-display);background:none;border:1px solid var(--rule);border-radius:999px;padding:8px 14px;color:var(--ink);cursor:pointer}
+.stage{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:34px 0;border-bottom:1px solid var(--rule)}
+.stage-head .num{font:700 44px/1 var(--f-display);color:var(--rule);-webkit-text-stroke:1px var(--muted)}
+.stage-head h2{font-size:22px;margin-top:6px}
+.stage-head p{font-size:14px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+.lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.lane{display:grid;gap:14px;min-width:0}
+.lane-empty{font-size:14px;color:var(--muted);font-style:italic;padding:14px;border:1px dashed var(--rule);border-radius:6px}
+body.only-buyer .lane.seller, body.only-seller .lane.buyer{display:none}
+body.only-buyer .lanes, body.only-seller .lanes{grid-template-columns:minmax(0,1fr)}
+.step{background:var(--panel);border:1px solid var(--rule);border-radius:6px;min-width:0;scroll-margin-top:80px}
+.member,.stage{scroll-margin-top:80px}
+.step.buyer{border-top:3px solid var(--bonnet)} .step.seller{border-top:3px solid var(--oak)}
+.step summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;gap:6px}
+.step summary::-webkit-details-marker{display:none}
+.meta{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font:400 13px var(--f-mono);color:var(--muted)}
+.who-tag{font-weight:600}
+.step.buyer .who-tag{color:var(--bonnet)} .step.seller .who-tag{color:var(--oak)}
+.step h3{font-size:18px;font-weight:600}
+.cmd{font:600 13px var(--f-mono);background:var(--code);padding:2px 7px;border-radius:4px;overflow-wrap:anywhere}
+.agents{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 12px var(--f-mono);padding:3px 8px;border-radius:999px;background:var(--bonnet-soft);color:var(--bonnet);border:0;cursor:pointer}
+.step.seller .chip{background:var(--oak-soft);color:var(--oak)}
+.chip.none{background:var(--code);color:var(--muted);cursor:default}
+.catch-count{font:600 12px var(--f-mono);color:var(--flag)}
+.more{font:600 13px var(--f-display);color:var(--muted)}
+.step[open] .more{display:none}
+.body{padding:0 16px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
+.body code,.step summary .cmd{overflow-wrap:anywhere}
+.body h4{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.body ul{margin:0;padding-left:20px}
+.body li{margin:3px 0;overflow-wrap:anywhere}
+.body ol{margin:0;padding-left:20px}
+.catches{background:var(--flag-soft);border-radius:6px;padding:12px 14px}
+.catches h4{color:var(--flag)}
+.output{background:var(--code);border-radius:6px;padding:12px 14px;font-size:15px;max-height:520px;overflow:auto;min-width:0}
+.output table{border-collapse:collapse;font:400 13px/1.4 var(--f-mono);font-variant-numeric:tabular-nums;display:block;overflow-x:auto}
+.output th,.output td{border:1px solid var(--rule);padding:4px 7px;text-align:left;vertical-align:top}
+.output pre{white-space:pre-wrap;font:400 13px/1.5 var(--f-mono);margin:0}
+.output code{font-family:var(--f-mono);font-size:.88em}
+.output blockquote{margin:0;padding-left:12px;border-left:3px solid var(--rule)}
+.output h1,.output h2,.output h3,.output h4{font-size:15px;margin:10px 0 4px}
+.output p{margin:6px 0}
+.files{font:400 13px var(--f-mono);color:var(--muted)}
+.files code{overflow-wrap:anywhere}
+.team{padding:40px 0 10px}
+.team h2{font-size:26px}
+.team > p{color:var(--muted);max-width:62ch}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:18px}
+.member{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.member.hl{outline:2px solid var(--flag)}
+.member b{font:600 14px var(--f-mono)}
+.member span{font-size:14px;color:var(--muted);line-height:1.45}
+.member em{font:400 12px var(--f-mono);font-style:normal;color:var(--muted)}
+footer{margin-top:40px;font-size:14px;color:var(--muted);max-width:75ch}
+@media (max-width:860px){
+  header.intro{grid-template-columns:minmax(0,1fr)}
+  .stage{grid-template-columns:minmax(0,1fr);gap:14px}
+  .lanes{grid-template-columns:minmax(0,1fr)}
+  .toggle-all{margin-left:0}
+}
+@media (prefers-reduced-motion:no-preference){.step{transition:border-color .15s}.step:hover{border-color:var(--muted)}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div>
+      <div class="eyebrow">realtor-pipeline plugin · sample scenario · Round Rock, Texas</div>
+      <h1>One agent, two clients, every stage from first inquiry to contract</h1>
+      <p>This is a real run of the plugin on a fictional scenario. Each card below is a command the agent typed. Open one to see which helper agents did the work, what they produced (quoted from the actual output), and where a compliance rule changed the result. Dates are scenario dates; the run itself happened on __RUNDATE__.</p>
+    </div>
+    <div class="cast">
+      <div class="who"><i class="dot agent"></i><div><b>Sam Rivera</b><span>Agent at Lakeside Realty LLC, licensed in Texas. Uses the plugin in a business folder; no connectors in this run, so MLS data comes from pasted files.</span></div></div>
+      <div class="who"><i class="dot buyer"></i><div><b>Carlos Mendez · buyer</b><span>Relocating from Houston for a January job. Zillow inquiry on 1402 Oak Bend Dr.</span></div></div>
+      <div class="who"><i class="dot seller"></i><div><b>Dan Okafor · seller</b><span>"Maybe next year" web lead on 214 Ridge Rd who suddenly needs to list.</span></div></div>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls" role="toolbar" aria-label="Filter the walkthrough">
+    <span class="label">Show</span>
+    <div class="seg">
+      <button type="button" id="f-all" aria-pressed="true" data-f="all">Both clients</button>
+      <button type="button" id="f-buyer" aria-pressed="false" data-f="buyer">Buyer</button>
+      <button type="button" id="f-seller" aria-pressed="false" data-f="seller">Seller</button>
+    </div>
+    <button type="button" class="toggle-all" id="toggle-all">Open all steps</button>
+  </div>
+
+  <main id="stages"></main>
+
+  <section class="team" id="team">
+    <div class="eyebrow">Behind the commands</div>
+    <h2>The helper agents</h2>
+    <p>Each agent runs in its own context and can only read and write files in the business folder. Commands handle connectors and always stage messages as drafts. Click an agent tag on any step to find it here.</p>
+    <div class="roster" id="roster"></div>
+  </section>
+
+  <footer>
+    All people, properties, prices and offers are fictional. Outputs are suggestions for a licensed agent to review; Texas rules referenced should be confirmed with a broker or at trec.texas.gov. Built from the realtor-pipeline Claude plugin.
+  </footer>
+</div>
+
+<script>
+const STEPS = __STEPS__;
+const STAGES = [
+  {n:1, t:"First contact", d:"Speed-to-lead replies, consent, and the Texas IABS notice."},
+  {n:2, t:"Qualify & nurture", d:"Scoring on evidence, follow-up cadence, drip plans for leads who aren't ready."},
+  {n:3, t:"Consultation", d:"Buyer packet and SB 1968 agreement; listing appointment with a CMA."},
+  {n:4, t:"Search & market", d:"Shortlists and tours; listing launch, copy, and weekly seller reports."},
+  {n:5, t:"Offers", d:"Offer terms for the buyer; side-by-side comparison for the seller."},
+  {n:6, t:"Under contract", d:"Deadline calendar, option period, repair request."}
+];
+const AGENTS = {
+  "lead-responder":["First replies to new leads, tailored to the source.","Stage 1"],
+  "lead-qualifier":["Scores leads hot, warm, or cold on evidence and sets the next action.","Stage 2"],
+  "nurture-writer":["Writes dated follow-up sequences for leads who aren't ready.","Stage 2"],
+  "cma-analyst":["Comparative market analysis: comps, market pace, value range.","Stages 3-5"],
+  "listing-writer":["MLS remarks and marketing copy, checked against advertising rules.","Stage 4"],
+  "feedback-reporter":["Weekly seller report from showing feedback, with price signals.","Stage 4"],
+  "offer-analyst":["Offer terms for buyers; offer comparison and net sheets for sellers.","Stage 5"],
+  "deadline-tracker":["Computes every contract deadline and flags what is at risk.","Stage 6"],
+  "repair-negotiator":["Turns inspection findings into a prioritized repair request.","Stage 6"]
+};
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const inline = t => esc(t)
+  .replace(/`([^`]+)`/g,"<code>$1</code>")
+  .replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>")
+  .replace(/(^|[^*])\*([^*\s][^*]*)\*/g,"$1<em>$2</em>");
+function md(src){
+  const L = String(src).replace(/\r/g,"").split("\n"); let h = "", i = 0;
+  const cells = r => r.trim().replace(/^\||\|$/g,"").split("|").map(c=>c.trim());
+  while(i < L.length){
+    const l = L[i];
+    if(/^\s*```/.test(l)){ let b=[]; i++; while(i<L.length && !/^\s*```/.test(L[i])) b.push(L[i++]); i++; h += "<pre>"+esc(b.join("\n"))+"</pre>"; continue; }
+    if(/^\s*\|/.test(l) && i+1<L.length && /^\s*\|?\s*:?-{2,}/.test(L[i+1])){
+      const head = cells(l); i += 2; let rows = [];
+      while(i<L.length && /^\s*\|/.test(L[i])) rows.push(cells(L[i++]));
+      h += "<table><thead><tr>"+head.map(c=>"<th>"+inline(c)+"</th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(c=>"<td>"+inline(c)+"</td>").join("")+"</tr>").join("")+"</tbody></table>"; continue; }
+    const hm = l.match(/^#{1,6}\s+(.*)/); if(hm){ h += "<h4>"+inline(hm[1])+"</h4>"; i++; continue; }
+    if(/^\s*([-*]|\d+\.)\s+/.test(l)){
+      const ol = /^\s*\d+\./.test(l); let items = [];
+      while(i<L.length && (/^\s*([-*]|\d+\.)\s+/.test(L[i]) || (/^\s{2,}\S/.test(L[i]) && items.length))){
+        if(/^\s*([-*]|\d+\.)\s+/.test(L[i])) items.push(L[i].replace(/^\s*([-*]|\d+\.)\s+/,"")); else items[items.length-1] += " "+L[i].trim(); i++; }
+      h += (ol?"<ol>":"<ul>")+items.map(t=>"<li>"+inline(t)+"</li>").join("")+(ol?"</ol>":"</ul>"); continue; }
+    if(/^\s*>/.test(l)){ let b=[]; while(i<L.length && /^\s*>/.test(L[i])) b.push(L[i++].replace(/^\s*>\s?/,"")); h += "<blockquote>"+b.map(inline).join("<br>")+"</blockquote>"; continue; }
+    if(!l.trim()){ i++; continue; }
+    let b=[]; while(i<L.length && L[i].trim() && !/^\s*(```|\||#|[-*]\s|\d+\.\s|>)/.test(L[i])) b.push(L[i++]);
+    if(!b.length){ b.push(L[i++]); }
+    h += "<p>"+b.map(inline).join("<br>")+"</p>";
+  }
+  return h;
+}
+const used = new Set(); STEPS.forEach(s=>s.agents.forEach(a=>used.add(a)));
+const catches = STEPS.reduce((n,s)=>n+s.catches.length,0);
+document.getElementById("stats").innerHTML =
+  [[STEPS.length,"commands run"],[used.size,"helper agents used"],[catches,"compliance and judgment catches"],[STEPS.reduce((n,s)=>n+s.files.length,0),"files created or updated"]]
+  .map(([v,l])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join("");
+
+function card(s){
+  const chips = s.agents.length ? s.agents.map(a=>`<button type="button" class="chip" data-agent="${esc(a)}" title="See what ${esc(a)} does">${esc(a)}</button>`).join("") : `<span class="chip none">no agent — the command did it</span>`;
+  return `<details class="step ${s.track}" id="step-${s.id}">
+    <summary>
+      <div class="meta"><span class="who-tag">${s.track==="buyer"?"Carlos · buyer":"Dan · seller"}</span><span>${esc(s.date)}</span>${s.catches.length?`<span class="catch-count">${s.catches.length} catch${s.catches.length>1?"es":""}</span>`:""}</div>
+      <h3>${esc(s.title)}</h3>
+      <div class="meta">${s.commands.map(c=>`<span class="cmd">${esc(c)}</span>`).join("")}</div>
+      <div class="agents">${chips}</div>
+      <span class="more">Open step ▾</span>
+    </summary>
+    <div class="body">
+      <div><h4>What happened</h4><ul>${s.happened.map(h=>`<li>${md(h).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>
+      ${s.catches.length?`<div class="catches"><h4>Compliance and judgment catches</h4><ul>${s.catches.map(c=>`<li>${md(c).replace(/^<p>|<\/p>\s*$/g,"")}</li>`).join("")}</ul></div>`:""}
+      <div><h4>Key output (verbatim)</h4><div class="output">${md(s.output)}</div></div>
+      ${s.files.length?`<div class="files"><h4>Files</h4>${s.files.map(f=>`<code>${esc(f)}</code>`).join(" · ")}</div>`:""}
+    </div>
+  </details>`;
+}
+document.getElementById("stages").innerHTML = STAGES.map(st=>{
+  const lane = tr => { const c = STEPS.filter(s=>s.stage===st.n && s.track===tr); return `<div class="lane ${tr}">${c.length?c.map(card).join(""):`<div class="lane-empty">No ${tr} step at this stage in the scenario.</div>`}</div>`; };
+  return `<section class="stage" id="stage-${st.n}"><div class="stage-head"><div class="num">${st.n}</div><h2>${st.t}</h2><p>${st.d}</p></div><div class="lanes">${lane("buyer")}${lane("seller")}</div></section>`;
+}).join("");
+document.getElementById("roster").innerHTML = Object.entries(AGENTS).map(([k,[d,st]])=>{
+  const n = STEPS.filter(s=>s.agents.includes(k)).length;
+  return `<div class="member" id="agent-${k}"><b>${k}</b><span>${d}</span><em>${st} · used in ${n} step${n===1?"":"s"}</em></div>`;
+}).join("");
+
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.body.classList.remove("only-buyer","only-seller");
+  if(b.dataset.f!=="all") document.body.classList.add("only-"+b.dataset.f);
+}));
+const tAll = document.getElementById("toggle-all");
+tAll.addEventListener("click",()=>{
+  const open = tAll.textContent.startsWith("Open");
+  document.querySelectorAll("details.step").forEach(d=>d.open=open);
+  tAll.textContent = open ? "Close all steps" : "Open all steps";
+});
+document.addEventListener("click",e=>{
+  const c = e.target.closest(".chip[data-agent]"); if(!c) return;
+  e.preventDefault();
+  const m = document.getElementById("agent-"+c.dataset.agent); if(!m) return;
+  document.querySelectorAll(".member.hl").forEach(x=>x.classList.remove("hl"));
+  m.classList.add("hl"); m.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"center"});
+});
+</script>
