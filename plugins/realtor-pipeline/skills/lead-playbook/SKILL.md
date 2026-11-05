@@ -38,6 +38,7 @@ created: 2026-11-05
 last_contact:
 next_action:
 next_action_due:
+client_folder:            # buyers/<stem>/ or listings/<street-slug>/ once a client (see client-playbook)
 ---
 
 ## Summary
@@ -48,6 +49,10 @@ One or two sentences: who they are and what they want.
 ```
 
 Keep the frontmatter current on every touch: update `status`, `last_contact`, `next_action`, `next_action_due`, and append a dated line to `## Log`. Log facts the client said, not guesses; mark inferences as such.
+
+## Agent profile
+
+`leads/agent-profile.md` holds the agent's details in frontmatter, collected once and reused by every skill: `name`, `brokerage`, `brokerage_address`, `phone`, `email`, `license`, and optionally `mls_remarks_limit` (default 1000), `lenders` (list of names for referrals), and `adjustments` (local CMA values, e.g. `bath: 10000`, `garage_bay: 8000`). Ask for a missing field when a task needs it and save the answer.
 
 ## Scoring rubric
 
