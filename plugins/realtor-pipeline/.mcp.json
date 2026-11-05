@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "followupboss": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/servers/followupboss/server.mjs"],
+      "env": {
+        "FUB_API_KEY": "${user_config.fub_api_key}"
+      }
+    }
+  }
+}

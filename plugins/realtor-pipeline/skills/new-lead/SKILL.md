@@ -42,6 +42,6 @@ Ask which draft to use and accept edits. Then, only on the user's go-ahead:
 - Google Calendar available → create a reminder event "Follow up: <name>" at the playbook's next-touch time.
 - Once the user confirms the message went out, set `status: contacted`, `last_contact: <today>`, and log it. In Texas, when the reply included the IABS, also set `iabs_provided: <today>` and log how it was delivered.
 
-When `crm: followupboss`, end with the lead-playbook **For Follow Up Boss** block.
+When `crm: followupboss`, end with the lead-playbook **For Follow Up Boss** block (connected: offer to add the lead to Follow Up Boss directly).
 
 Done when: the user has a staged draft (or copied the text) and the record reflects what was sent. Finish by offering `/realtor-pipeline:qualify-lead` for the first conversation.

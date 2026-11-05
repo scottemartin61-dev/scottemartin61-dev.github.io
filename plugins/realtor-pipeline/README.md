@@ -78,6 +78,12 @@ Set `state: TX` in `leads/agent-profile.md` (the plugin asks on first use) and a
 
 TREC rules and forms change — confirm exact wording and form versions on trec.texas.gov or with your broker.
 
+## Follow Up Boss connection (optional)
+
+The plugin includes a small Follow Up Boss connector (`servers/followupboss/`, Node.js, no dependencies). When the plugin is enabled it asks for a Follow Up Boss API key (Admin → API in Follow Up Boss), stored in the system's secure credential store. With it, the assistant can look up people, stages, and tasks, and — after the user clicks **Allow** on a confirmation for each change (enforced by `hooks/confirm-fub-write.mjs`) — add leads, change stages, add tags, notes, and tasks. Leave the key blank to keep using copy-paste updates. Requires Node.js on the computer and a paid Claude plan that includes Claude Code (Pro or higher).
+
+HAR.com, LoopNet, Crexi, and RentSpree have no public API for personal tools, and storing their passwords for automated logins would break their terms (and MLS credential rules), so they stay email- and paste-based.
+
 ## Connectors (optional)
 
 Works with plain files alone. Lead emails from HAR.com, Zillow, LoopNet, Crexi, RentSpree, and Follow Up Boss are handled like any other lead; Follow Up Boss stays the system of record, with ready-to-paste updates after every step. LoopNet and Crexi (commercial) leads get first replies, qualification, and follow-up, with a prompt to involve the broker; offer and contract tools are residential only. If connected, it also uses **Gmail** (find portal leads, create drafts — never sends), **Google Calendar** (reminders, appointments, tour holds), and **Zillow** (property details, comps, active-listing search). Your own MLS data beats portal data — paste an export whenever you have one.

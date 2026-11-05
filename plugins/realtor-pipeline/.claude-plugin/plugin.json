@@ -1,7 +1,7 @@
 {
   "name": "realtor-pipeline",
   "displayName": "Realtor Pipeline",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Assistant agents for residential real estate agents. Leads: speed-to-lead replies, qualification, nurture, daily review. Clients: buyer consultations, home search, CMAs and listing presentations, listing copy, weekly seller reports. Deals: offer strategy, offer comparison, contract deadlines, repair requests, transaction status. Texas (TREC) compliance built in.",
   "author": {
     "name": "Scott Martin"
@@ -17,5 +17,14 @@
     "listing",
     "buyer-consultation",
     "texas"
-  ]
+  ],
+  "userConfig": {
+    "fub_api_key": {
+      "type": "string",
+      "title": "Follow Up Boss API key (optional)",
+      "description": "Lets the assistant read and update your Follow Up Boss contacts, notes, and tasks. It asks you before every change. Create one in Follow Up Boss under Admin \u2192 API. Leave blank if you don't use Follow Up Boss.",
+      "required": false,
+      "sensitive": true
+    }
+  }
 }

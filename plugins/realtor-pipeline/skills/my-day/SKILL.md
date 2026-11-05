@@ -16,7 +16,8 @@ One short list, most urgent first, in plain language. Load `realtor-pipeline:lea
 4. **Buyers:** for each `buyers/*/search.md` with `agreement_signed: yes`, note if no search has been run in 7 days, and any `agreement_expires` or `showing_agreement_expires` within 14 days.
 5. **Nurture:** touches in `leads/nurture/` dated today or earlier that are not marked sent.
 6. **Rentals:** lease listings with complete applications not yet compared, and tenants with a move-in date within 30 days and no application submitted.
-7. **Follow Up Boss** (`crm: followupboss`): count lead records changed since their last "Follow Up Boss updated" log line; if any, the last list item is *Say: "What do I update in Follow Up Boss?"*
+7. **Follow Up Boss tasks** (connected only): `fub_list_tasks` due today or earlier — fold them into the list, de-duplicated against items already found.
+8. **Follow Up Boss updates** (`crm: followupboss`): count lead records changed since their last "Follow Up Boss updated" log line; if any, the last list item is *Say: "What do I update in Follow Up Boss?"*
 
 Done when: every source above has been checked, or reported empty.
 
