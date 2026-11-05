@@ -57,7 +57,7 @@ Subject: <subject>
 ```
 
 ## Edge cases
-
+- `type: tenant` or `landlord`: talk about rent, move-in date, and the application process; never ask for ID, Social Security, or bank details. `type: commercial`: keep it brief and professional, ask about intended use, size, budget, and timeline, and mention she'll loop in her broker.
 - No contact method at all: return only the call opener section filled with "No phone or email on file" and stop.
 - Inquiry asks about schools, safety, or neighborhood demographics: answer with the objective-source redirect from the guardrails, never a characterization.
 - Inquiry is in another language: draft in that language and add an English translation under each draft.

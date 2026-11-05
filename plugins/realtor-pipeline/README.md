@@ -25,6 +25,8 @@ Say **"Help, I'm new"** and the assistant sets you up and shows what it can do. 
 |---|---|
 | `/realtor-pipeline:start-here` | Plain-language front door: first-time setup, personalization ("make it sound like me"), "what can you do?", and "what's next with <client>?" — it picks and runs the right assistant. |
 | `/realtor-pipeline:my-day` | One short, prioritized to-do list across deadlines, offers, new leads, client updates, and follow-ups, with what to say for each. |
+| `/realtor-pipeline:followupboss` | Imports a Follow Up Boss contact export, lists ready-to-paste updates for Follow Up Boss, and builds an import CSV of changed contacts. |
+| `/realtor-pipeline:rentals` | Leasing work: tenant rental searches, landlord rental listings with written screening criteria, and comparing RentSpree application summaries against those criteria only. |
 | `/realtor-pipeline:new-lead` | Paste an inquiry (or "from gmail") → lead record + text/email/call drafts in minutes, staged as a Gmail draft and calendar follow-up on approval. |
 | `/realtor-pipeline:qualify-lead` | Before a call: a script that asks only what you don't know yet. After: paste notes → hot/warm/cold score with evidence and next action. |
 | `/realtor-pipeline:nurture-plan` | A dated 90-day (warm) or 6-month (cold) drip of useful touches, saved to `leads/nurture/`, with drafts and reminders staged on approval. |
@@ -78,7 +80,7 @@ TREC rules and forms change — confirm exact wording and form versions on trec.
 
 ## Connectors (optional)
 
-Works with plain files alone. If connected, it also uses **Gmail** (find portal leads, create drafts — never sends), **Google Calendar** (reminders, appointments, tour holds), and **Zillow** (property details, comps, active-listing search). Your own MLS data beats portal data — paste an export whenever you have one.
+Works with plain files alone. Lead emails from HAR.com, Zillow, LoopNet, Crexi, RentSpree, and Follow Up Boss are handled like any other lead; Follow Up Boss stays the system of record, with ready-to-paste updates after every step. LoopNet and Crexi (commercial) leads get first replies, qualification, and follow-up, with a prompt to involve the broker; offer and contract tools are residential only. If connected, it also uses **Gmail** (find portal leads, create drafts — never sends), **Google Calendar** (reminders, appointments, tour holds), and **Zillow** (property details, comps, active-listing search). Your own MLS data beats portal data — paste an export whenever you have one.
 
 ## Try it
 

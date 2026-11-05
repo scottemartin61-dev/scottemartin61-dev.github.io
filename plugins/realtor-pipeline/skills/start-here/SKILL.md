@@ -36,7 +36,7 @@ Run when she accepts the offer above, says "personalize", "make it sound like me
 4. "Which cities, neighborhoods, or ZIP codes do you work?" → `service_areas`
 5. "In two or three sentences, tell me about yourself — like you'd say to a new client." → `bio`
 
-Then mention the rest can be added any time (lenders, title companies, inspectors, specialties, work hours, days off, languages, website and social links). Never ask about or store commission rates; compensation is negotiated per client.
+Then ask: "Which tools do you use — for example Follow Up Boss, HAR.com, LoopNet, Crexi, RentSpree?" and save `crm`, `mls_name`, and `tools`. If she uses Follow Up Boss, ask her to list her stage names in order and save them as `crm_stages`, and offer to import her contacts with the Follow Up Boss export. Then mention the rest can be added any time (lenders, title companies, inspectors, specialties, work hours, days off, languages, website and social links). Never ask about or store commission rates; compensation is negotiated per client.
 
 Done when: each answer given is saved and she has seen the list of what was saved.
 
@@ -60,6 +60,9 @@ If she described a situation, match it to the right assistant using the table, t
 | "We're under contract" / "Offer accepted" | `realtor-pipeline:under-contract` |
 | "The inspection came back" / "Repair request" | `realtor-pipeline:repair-request` |
 | "What's due on my deals?" / "Any deadlines?" | `realtor-pipeline:transaction-status` |
+| "Someone wants to rent" / "Help my landlord list" / "RentSpree applications came in" | `realtor-pipeline:rentals` |
+| "LoopNet or Crexi inquiry" / anything commercial | `realtor-pipeline:new-lead` (it routes commercial and tells her to loop in her broker) |
+| "Here's my Follow Up Boss export" / "What do I update in Follow Up Boss?" | `realtor-pipeline:followupboss` |
 
 Done when: the matching skill is running, or she has answered the either/or question.
 

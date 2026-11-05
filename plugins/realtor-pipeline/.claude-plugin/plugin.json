@@ -1,7 +1,7 @@
 {
   "name": "realtor-pipeline",
   "displayName": "Realtor Pipeline",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Assistant agents for residential real estate agents. Leads: speed-to-lead replies, qualification, nurture, daily review. Clients: buyer consultations, home search, CMAs and listing presentations, listing copy, weekly seller reports. Deals: offer strategy, offer comparison, contract deadlines, repair requests, transaction status. Texas (TREC) compliance built in.",
   "author": {
     "name": "Scott Martin"

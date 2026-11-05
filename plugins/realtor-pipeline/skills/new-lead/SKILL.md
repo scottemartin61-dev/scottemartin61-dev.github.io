@@ -1,6 +1,6 @@
 ---
 name: new-lead
-description: Captures a new residential real estate lead and gets a first reply ready fast. Use when the user says "new lead", "I got a lead", "Zillow/Realtor.com inquiry", "someone called on my sign", "open house sign-ins", "referral from…", or pastes a lead notification email, web form, or voicemail transcript.
+description: Captures a new residential real estate lead and gets a first reply ready fast. Use when the user says "new lead", "I got a lead", "Zillow/HAR.com/Realtor.com inquiry", "LoopNet or Crexi inquiry", "RentSpree", "Follow Up Boss new lead", "someone wants to rent", "someone called on my sign", "open house sign-ins", "referral from…", or pastes a lead notification email, web form, or voicemail transcript.
 argument-hint: "[pasted inquiry, or 'from gmail']"
 model: inherit
 ---
@@ -11,14 +11,14 @@ Turn a raw inquiry into a lead record and an approved first reply — target: un
 
 ## Step 1 — Get the inquiry
 
-Use the inquiry in the arguments or the conversation. If the user says "from gmail" (or "check my inbox") and a Gmail connector is available, search recent unread threads for portal lead notifications (Zillow, Realtor.com, Homes.com, Redfin, brokerage website forms) and list them for the user to pick. Several inquiries → run Steps 2-5 for each, dispatching the responders in parallel.
+Use the inquiry in the arguments or the conversation. If the user says "from gmail" (or "check my inbox") and a Gmail connector is available, search recent unread threads for lead notifications (Zillow, HAR.com, Realtor.com, Homes.com, Redfin, LoopNet, Crexi, RentSpree, Follow Up Boss, brokerage website forms) and list them for the user to pick. Several inquiries → run Steps 2-5 for each, dispatching the responders in parallel.
 
 Done when: every inquiry to process is identified.
 
 ## Step 2 — Create the record
 
 1. Check `leads/` for an existing record with the same email or phone (Grep). If one exists, append the new inquiry to its `## Log` instead of creating a duplicate, and tell the user.
-2. Otherwise create `leads/<today>-<first-last>.md` per the playbook. Fill only what the inquiry states. Set `consent.email: yes` when they emailed or submitted a form with an email address, and `consent.sms: yes` only when they texted first or the form shows explicit text consent.
+2. Otherwise create `leads/<today>-<first-last>.md` per the playbook. Fill only what the inquiry states. Set `consent.email: yes` when they emailed or submitted a form with an email address, and `consent.sms: yes` only when they texted first or the form shows explicit text consent. Set `type` from the inquiry: a rental inquiry or RentSpree → `tenant` (or `landlord` for an owner wanting to rent out); LoopNet, Crexi, or any commercial property → `commercial`.
 
 Done when: exactly one record holds this inquiry.
 
@@ -41,5 +41,7 @@ Ask which draft to use and accept edits. Then, only on the user's go-ahead:
 - Gmail available → create a Gmail **draft** (never send) addressed to the lead, as a reply in the original thread when there is one.
 - Google Calendar available → create a reminder event "Follow up: <name>" at the playbook's next-touch time.
 - Once the user confirms the message went out, set `status: contacted`, `last_contact: <today>`, and log it. In Texas, when the reply included the IABS, also set `iabs_provided: <today>` and log how it was delivered.
+
+When `crm: followupboss`, end with the lead-playbook **For Follow Up Boss** block.
 
 Done when: the user has a staged draft (or copied the text) and the record reflects what was sent. Finish by offering `/realtor-pipeline:qualify-lead` for the first conversation.

@@ -1,6 +1,6 @@
 ---
 name: texas-playbook
-description: Texas-specific real estate rules for license holders — TREC advertising and IABS notice requirements, SB 1968 written buyer agreements and 14-day showing agreements, Texas non-disclosure and CMA data, seller disclosure forms, Texas telemarketing/text rules, and TREC contract rules (promulgated forms, option period, earnest money, amendments, statutory termination notices). Use whenever the agent profile says state TX, or the user mentions Texas, TREC, IABS, TXR forms, option period, option fee, or a Texas city or property.
+description: Texas-specific real estate rules for license holders — TREC advertising and IABS notice requirements, SB 1968 written buyer agreements and 14-day showing agreements, Texas non-disclosure and CMA data, seller disclosure forms, Texas telemarketing/text rules, and TREC contract rules (promulgated forms, option period, earnest money, amendments, statutory termination notices), and Texas leasing and commercial basics. Use whenever the agent profile says state TX, or the user mentions Texas, TREC, IABS, TXR forms, option period, option fee, or a Texas city or property.
 model: inherit
 ---
 
@@ -85,3 +85,18 @@ The Texas Fair Housing Act (Property Code ch. 301) protects the same classes as 
 - **Statutory notices with termination rights.** Seller's Disclosure Notice not delivered before signing → buyer may terminate within **7 days after receiving it**. Subdivision Information under the POA addendum → buyer may terminate within **3 days after receiving it** (or any time before closing if never delivered). The MUD notice (Water Code §49.452) must be given **before the buyer signs** the contract; a missing one gives the buyer termination rights. Track these on `documents_due` with their termination windows.
 - **Intermediary deals** (`side: both`): appointed license holders only; neither may disclose one party's confidential information (price flexibility, motivation) to the other.
 - **Wire fraud.** Texas title companies typically require verbal verification of wiring instructions; reinforce the transaction-playbook warning with each client.
+
+## Leasing (rentals)
+
+- **IABS** applies to leasing too: give it at the first substantive talk about a specific rental.
+- **Representation:** use the brokerage's tenant representation agreement (Texas REALTORS® Residential Buyer/Tenant Representation Agreement) before showing rentals. Whether SB 1968's written-agreement rule covers tenants as well as buyers is not confirmed here — default to getting it signed and tell her to confirm with her broker.
+- **Forms:** Texas REALTORS® Residential Lease, Residential Lease Application, and related addenda (TREC promulgates no lease forms). Never draft lease terms.
+- **Tenant selection criteria (Property Code §92.3515):** the landlord must make written selection criteria available to applicants; if an applicant is rejected without that notice having been available, the application fee and deposit must be refunded. Before sending a RentSpree link for a landlord client, confirm written criteria exist and are shared.
+- **Fair housing in rentals:** apply the same written criteria to every applicant, in the order applications are complete. No blanket criminal-history bans (HUD guidance calls for individual assessment). Assistance animals are not pets — no pet fees or breed limits for them, and accommodation requests go to the broker. Never mention or weigh protected traits; check the property's city for extra protected classes.
+- **Security deposit:** refund or written itemized deductions within 30 days after the tenant surrenders the unit (Property Code §92.103) — tell landlord clients this at listing.
+
+## Commercial (LoopNet, Crexi)
+
+- IABS still applies to commercial prospects.
+- SB 1968's buyer-agreement rule covers residential property; commercial representation and contracts use Texas REALTORS® commercial forms or attorney-drafted documents, not TREC residential forms.
+- A new license holder should work commercial deals with her broker's direct supervision — say so whenever a commercial lead moves past first contact.

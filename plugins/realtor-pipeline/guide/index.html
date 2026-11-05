@@ -117,6 +117,11 @@ table.week td:first-child{font:600 16px var(--f-display);white-space:nowrap}
 .copy-out{font:600 14px var(--f-display);border:0;background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 16px;cursor:pointer}
 .copy-out.done{background:var(--oak)}
 .out .note{font-size:14px;color:var(--muted);margin:10px 0 0}
+.toolgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.tool{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.tool h3{font-size:20px}
+.tool p{margin:0;font-size:16px;line-height:1.5}
+.tool .small{font-size:14px;color:var(--muted)}
 .musts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
 .must{background:var(--flag-soft);border-radius:8px;padding:14px 16px}
 .must b{font-family:var(--f-display);display:block;margin-bottom:2px}
@@ -133,7 +138,7 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
   .rules,.daily{grid-template-columns:minmax(0,1fr)}
   .picker{grid-template-columns:minmax(0,1fr)}
   .detail{position:static}
-  .kv,.musts,.sheet fieldset{grid-template-columns:minmax(0,1fr)}
+  .kv,.musts,.sheet fieldset,.toolgrid{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 
@@ -148,7 +153,7 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
       <div class="rule"><b>3</b><h3>You make the calls</h3><p>Read every draft, fill in the [blanks], and use your brokerage's official forms for anything legal.</p></div>
     </div>
     <nav class="jump" aria-label="Sections">
-      <a href="#everyday">Every day</a><a href="#make-it-yours">Make it yours</a><a href="#what-now">What do I say when…</a><a href="#journey">A client's journey</a><a href="#week">Weekly rhythm</a><a href="#practice">Practice</a><a href="#musts">Must-knows</a><a href="#faq">Questions</a>
+      <a href="#everyday">Every day</a><a href="#make-it-yours">Make it yours</a><a href="#tools">Your tools</a><a href="#what-now">What do I say when…</a><a href="#journey">A client's journey</a><a href="#week">Weekly rhythm</a><a href="#practice">Practice</a><a href="#musts">Must-knows</a><a href="#faq">Questions</a>
     </nav>
   </header>
 
@@ -195,7 +200,10 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
         <label>Title companies<input id="p-title" name="Title companies"></label>
         <label>Home inspectors<input id="p-insp" name="Inspectors"></label>
         <label>Who you ask when you're unsure<small>your broker or mentor</small><input id="p-broker" name="My broker/mentor"></label>
-        <label>Your MLS name<input id="p-mls" name="MLS"></label>
+        <label>Your MLS name<input id="p-mls" name="MLS" value="HAR"></label>
+        <label>Your CRM<input id="p-crm" name="CRM" value="Follow Up Boss"></label>
+        <label>Other sites you use<input id="p-tools" name="Other tools" value="HAR.com, LoopNet, Crexi, RentSpree"></label>
+        <label class="wide">Your Follow Up Boss stages, in order<small>Copy them from Follow Up Boss so the assistant uses your exact names</small><input id="p-stages" name="My Follow Up Boss stages"></label>
       </fieldset>
       <fieldset><legend>How you work</legend>
         <label>Hours you take calls<small>e.g. 9am–6pm weekdays, 10–2 Saturday</small><input id="p-hours" name="Work hours"></label>
@@ -208,6 +216,18 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
         <p class="note">Leave commission rates out. They're negotiated with each client, so the assistant never assumes one.</p>
       </div>
     </form>
+  </section>
+
+  <section id="tools">
+    <div class="eyebrow">Works alongside what you already use</div>
+    <h2>Your tools</h2>
+    <p class="lede">The assistant can't log in to these sites, but it works well alongside each one. Here's how.</p>
+    <div class="toolgrid">
+      <div class="tool"><h3>Follow Up Boss</h3><p>Still your main client list. After every step, the assistant gives you a short <b>"For Follow Up Boss"</b> note: the stage, tags, a note and the next task, ready to paste. Once a day, ask for everything that changed.</p><div class="say"><q>What do I update in Follow Up Boss?</q><button class="copy" type="button">Copy</button></div><p class="small">First time: export your contacts from Follow Up Boss (People → select → export) and give the file to the assistant. It sets everyone up.</p></div>
+      <div class="tool"><h3>HAR.com</h3><p>Paste HAR.com lead emails just like any other lead. For home values or home searches, paste or attach a HAR MLS search. MLS data gives the best results.</p><div class="say"><q>New HAR.com lead: [paste the email]</q><button class="copy" type="button">Copy</button></div></div>
+      <div class="tool"><h3>LoopNet & Crexi</h3><p>Commercial inquiries. The assistant writes a professional first reply and asks the right questions (use, size, budget, timing). Commercial deals use different contracts, so bring in your broker early.</p><div class="say"><q>New LoopNet inquiry: [paste the message]</q><button class="copy" type="button">Copy</button></div></div>
+      <div class="tool"><h3>RentSpree</h3><p>For rentals. The assistant helps landlords write fair screening rules, writes the rental listing, and compares RentSpree applications against those rules only. Paste the summaries, never full reports with SSNs.</p><div class="say"><q>RentSpree applications came in for 4410 Willow Creek: [paste each summary]</q><button class="copy" type="button">Copy</button></div></div>
+    </div>
   </section>
 
   <section id="what-now">
@@ -237,6 +257,7 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
           <tr><td>Every morning</td><td>"What should I do today?"</td><td>Nothing slips: new leads, deadlines, follow-ups.</td></tr>
           <tr><td>Within 5 minutes</td><td>"I got a new lead…" + paste it</td><td>The first agent to reply usually wins the client.</td></tr>
           <tr><td>After every call</td><td>"I just talked to… here are my notes"</td><td>Keeps every client's file current and sets your next step.</td></tr>
+          <tr><td>End of each day</td><td>"What do I update in Follow Up Boss?"</td><td>Keeps Follow Up Boss matching everything you did today.</td></tr>
           <tr><td>Mondays</td><td>"Which leads need a follow-up this week?"</td><td>Warm and cold leads get a helpful touch on schedule.</td></tr>
           <tr><td>Fridays</td><td>"Write the weekly report for [listing address]"</td><td>Sellers who hear from you every week stay happy.</td></tr>
           <tr><td>Any day under contract</td><td>"Any deadlines this week?"</td><td>Contract deadlines are strict. Missing one can cost your client.</td></tr>
@@ -276,6 +297,7 @@ footer{margin-top:44px;font-size:14px;color:var(--muted);max-width:75ch}
       <details><summary>What's in the [brackets]?</summary><p>Things only you know or need to check, like whether a house is still available, a showing time, or your brokerage's address. Fill them in before sending.</p></details>
       <details><summary>Where does it keep my clients' information?</summary><p>In your real estate folder on the computer, one file per client. You never have to open those files; just ask, for example "What's the latest with the Chens?"</p></details>
       <details><summary>What's the "IABS" it keeps mentioning?</summary><p>Information About Brokerage Services, a one-page Texas form explaining how agents work. You must share it the first time you talk with someone about a specific home. The assistant puts the link in your first email. Your broker gives you the link.</p></details>
+      <details><summary>Does it update Follow Up Boss for me?</summary><p>No. It can't log in to Follow Up Boss, HAR.com, LoopNet, Crexi or RentSpree. It gives you ready-to-paste updates, and it can read an export file from Follow Up Boss. Say "What do I update in Follow Up Boss?" at the end of the day.</p></details>
       <details><summary>Can I change my info later?</summary><p>Yes. Update the boxes in "Make it yours" and paste the new message, or just say something like "My new phone number is …" or "Make my emails a little more formal."</p></details>
       <details><summary>The first time I use it, it asks for my license number. Why?</summary><p>So every email and ad it writes has your name, your brokerage and your TREC license number on it, as Texas rules require. It only asks once.</p></details>
       <details><summary>Something looks wrong. What do I do?</summary><p>Tell it, in plain words: "That price is wrong, it's $449,000" or "Make this shorter and friendlier." It fixes it. If you're unsure whether something is allowed, ask your broker.</p></details>
@@ -300,7 +322,7 @@ const S = [
   say:"I got a new lead from Zillow: [paste the whole message here]",
   get:["A friendly reply email in your voice","A short phone script if you'd rather call","The person saved as a new lead, with a follow-up reminder"],
   you:["Read the email and fill in any [blanks]","Send it yourself, then tell it \"Sent\""],
-  tip:"Works for Zillow, Realtor.com, your website, a sign call, an open-house sign-in or a referral. Paste the whole message.",
+  tip:"Works for HAR.com, Zillow, Realtor.com, LoopNet, Crexi, RentSpree, Follow Up Boss alerts, your website, a sign call, an open-house sign-in or a referral. Paste the whole message.",
   helper:"lead-responder"},
  {id:"before-call", g:"New people", tag:"both", t:"I'm about to call a lead", when:"Before your first real conversation.",
   say:"I'm about to call Maria Lopez. What should I ask?",
@@ -386,6 +408,42 @@ const S = [
   you:["Handle the at-risk items first"],
   tip:"\"What should I do today?\" includes this automatically.",
   helper:"deadline-tracker"},
+ {id:"rent-tenant", g:"Rentals", tag:"both", t:"Someone wants to rent", when:"Same day, like any new lead.",
+  say:"Kim Lee wants to rent a 3-bedroom in Pearland, up to $2,200 a month, moving in December 1.",
+  get:["Their rental wish list saved","A shortlist of rentals that fit (paste a HAR rental search if Zillow isn't connected)","What paperwork to sign before showings"],
+  you:["Get your brokerage's tenant agreement signed before showing","Send them the application link the landlord's agent provides"],
+  tip:"Never collect ID, Social Security numbers or bank statements through the assistant. RentSpree handles that.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"rent-landlord", g:"Rentals", tag:"seller", t:"A landlord wants to rent out a home", when:"After the owner agrees to work with you.",
+  say:"Linda Park wants to rent out 4410 Willow Creek Dr for $2,100 a month, available December 1.",
+  get:["Written screening rules (income, credit, rental history) to share with every applicant","Rental listing description and a social post","A setup checklist for the RentSpree link and showings"],
+  you:["Share the screening rules with applicants before they pay a fee (Texas law)","Use your brokerage's lease forms"],
+  tip:"Same rules for every applicant, in the order they apply. That keeps you on the right side of fair housing.",
+  helper:"listing-writer"},
+ {id:"rent-apps", g:"Rentals", tag:"seller", t:"RentSpree applications came in", when:"As soon as applications are complete.",
+  say:"RentSpree applications came in for 4410 Willow Creek: [paste each applicant's summary]",
+  get:["Each applicant checked against the written rules: meets, doesn't meet, or needs more info","A summary to share with the landlord"],
+  you:["Present it to the landlord. The owner decides"],
+  tip:"It ignores anything about family, pregnancy, disability or background, and treats a support animal request as something for your broker, not a pet.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"commercial", g:"Commercial", tag:"both", t:"LoopNet or Crexi inquiry", when:"Same day.",
+  say:"New Crexi inquiry: [paste the message]",
+  get:["A short, professional reply","Questions to ask about their use, size, budget and timing","A note to bring in your broker"],
+  you:["Loop in your broker before the first meeting"],
+  tip:"Commercial uses different contracts. The assistant helps with replies, follow-up and organizing, not commercial offers.",
+  helper:"lead-responder"},
+ {id:"fub-import", g:"Follow Up Boss", tag:"both", t:"Bring in my Follow Up Boss contacts", when:"Once at the start, then whenever you want a refresh.",
+  say:"Here's my Follow Up Boss export: [attach the file]",
+  get:["Everyone set up in the assistant, so \"What should I do today?\" knows your whole pipeline","Anyone marked do-not-contact is kept off every list"],
+  you:["In Follow Up Boss: People → select contacts → export, then attach the file"],
+  tip:"It asks once how your stages match up, then remembers.",
+  helper:"no helper, the assistant does this itself"},
+ {id:"fub-update", g:"Follow Up Boss", tag:"both", t:"Update Follow Up Boss", when:"End of each day.",
+  say:"What do I update in Follow Up Boss?",
+  get:["For each client that changed: the stage, tags, a note and the next task, ready to paste"],
+  you:["Paste each update into Follow Up Boss, then say \"Done\""],
+  tip:"Prefer a file? Say \"Export for Follow Up Boss\" to get one you can import.",
+  helper:"no helper, the assistant does this itself"},
  {id:"unsure", g:"Any time", tag:"both", t:"I'm not sure what to do", when:"Any time at all.",
   say:"Help. What should I do next with the Chens?",
   get:["Where that client is, in plain words","The one next step, and an offer to start it for you"],
@@ -408,6 +466,7 @@ const DRILLS = [
   {t:"Answer a pretend Zillow lead", d:"See the reply email it writes. Notice it doesn't text, because the person never agreed to texts.", say:"I got a new lead from Zillow. Name: Maria Alvarez, maria@example.com, (555) 010-2231. Property: 412 Birch Lane, $485,000. Message: Is this still available? We're pre-approved and our lease ends in January. Could we see it this weekend?"},
   {t:"Score her after a pretend call", d:"See how it decides hot, warm or cold, and what it tells you to do next.", say:"I just talked to Maria Alvarez. Not working with an agent. Pre-approved up to $510k. Lease ends Jan 31, wants to close by then. Likes Birchwood and Maple Heights. Needs 3 bedrooms and a garage. Very responsive."},
   {t:"Try a lead who isn't ready", d:"A seller who says \"next year\". See the follow-up plan it makes.", say:"I got a website message from Dan Okafor, dokafor@example.com: Thinking about selling our place on Ridge Rd sometime next year. Curious what it might be worth. No rush."},
+  {t:"Try a rental", d:"A landlord who wants to rent out a home. See the screening rules it suggests.", say:"Linda Park wants to rent out 4410 Willow Creek Dr, Pearland, for $2,100 a month, available December 1. 3 bed, 2 bath, small dogs OK."},
   {t:"Ask for your day", d:"See your to-do list with your pretend clients on it.", say:"What should I do today?"},
   {t:"Ask what's next", d:"Ask about one pretend client and let it start the next step.", say:"Help. What should I do next with Maria Alvarez?"}
 ];
