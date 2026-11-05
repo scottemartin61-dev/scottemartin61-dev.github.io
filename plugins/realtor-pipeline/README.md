@@ -13,12 +13,18 @@ In Claude Code (or Cowork):
 
 Work in a dedicated folder for your business — the plugin keeps records there in `leads/`, `buyers/`, and `listings/`.
 
+## New to this? Start here
+
+Say **"Help, I'm new"** and the assistant sets you up and shows what it can do. Every morning, say **"What should I do today?"**. After anything happens, tell it in your own words; you never need to type a command. A beginner's guide with a "what do I say when…" picker, a personalization worksheet, and practice exercises is in `guide/index.html`.
+
 ## What's inside
 
 ### Stages 1-2 — Leads
 
 | Command | What it does |
 |---|---|
+| `/realtor-pipeline:start-here` | Plain-language front door: first-time setup, personalization ("make it sound like me"), "what can you do?", and "what's next with <client>?" — it picks and runs the right assistant. |
+| `/realtor-pipeline:my-day` | One short, prioritized to-do list across deadlines, offers, new leads, client updates, and follow-ups, with what to say for each. |
 | `/realtor-pipeline:new-lead` | Paste an inquiry (or "from gmail") → lead record + text/email/call drafts in minutes, staged as a Gmail draft and calendar follow-up on approval. |
 | `/realtor-pipeline:qualify-lead` | Before a call: a script that asks only what you don't know yet. After: paste notes → hot/warm/cold score with evidence and next action. |
 | `/realtor-pipeline:nurture-plan` | A dated 90-day (warm) or 6-month (cold) drip of useful touches, saved to `leads/nurture/`, with drafts and reminders staged on approval. |

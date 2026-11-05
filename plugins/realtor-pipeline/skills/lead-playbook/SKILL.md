@@ -55,6 +55,14 @@ Keep the frontmatter current on every touch: update `status`, `last_contact`, `n
 
 `leads/agent-profile.md` holds the agent's details in frontmatter, collected once and reused by every skill: `name`, `brokerage`, `brokerage_address`, `phone`, `email`, `license`, `state` (two-letter code of the agent's license; `TX` turns on the `realtor-pipeline:texas-playbook` rules and its extra profile fields), and optionally `mls_remarks_limit` (default 1000), `lenders` (list of names for referrals), and `adjustments` (local CMA values, e.g. `bath: 10000`, `garage_bay: 8000`). Ask for a missing field when a task needs it and save the answer.
 
+**Personalization (all optional)** — `voice` (3-5 words on how she wants to come across, e.g. "warm, upbeat, straightforward"), `sign_off` (e.g. "Talk soon, Danielle"), `sample_writing` (a message she wrote and likes), `avoid_words`, `languages`, `service_areas` (cities, neighborhoods, ZIPs), `specialties` (e.g. first-time buyers, relocation, VA buyers), `price_range`, `website`, `social`, `bio` (2-3 sentences about her), `title_companies`, `inspectors`, `broker_contact` (who she asks when unsure), `mls_name`, `work_hours`, `days_off`, `seller_update_day` (default Friday). Use them this way:
+
+- Every draft follows `voice`, matches the tone and length of `sample_writing` (never copies it), avoids `avoid_words`, and ends with `sign_off` above the signature block. Offer a translated draft when a client writes in one of her `languages`.
+- `bio`, `specialties`, and `service_areas` feed buyer packets and listing presentations. Never invent sales numbers, awards, years of experience, or designations she didn't list — a new agent's honesty is her selling point.
+- Vendor lists (`lenders`, `title_companies`, `inspectors`) are always offered as two or more options, never as required.
+- Suggest call and reminder times inside `work_hours` (and inside the legal calling hours), never on `days_off`.
+- When the profile has no `voice`, write warm, plain, and brief.
+
 ## Scoring rubric
 
 Score only on evidence in the record. Missing information scores 0 and becomes a question for the next conversation.
