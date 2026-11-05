@@ -13,6 +13,8 @@ Load the `realtor-pipeline:client-playbook` and `realtor-pipeline:lead-playbook`
 
 Read `search.md` and the lead record. If `agreement_signed` is not `yes`, warn that tours require a signed written buyer agreement and keep going for search only. **Texas:** tour-plan mode is blocked unless `agreement_signed: yes` or `showing_agreement_expires` is in the future (Occ. Code §1101.563 — showing without one is grounds for TREC discipline); under a showing-only agreement, tour sheets and notes contain access logistics and the buyer's own reactions only — no pricing opinions or advice. Load `realtor-pipeline:texas-playbook` for Texas agents. Pick the mode from the arguments; default `search`.
 
+State property facts (garage, sqft, HOA, condition) only when they appear in `search.md`, search results, or the user's notes; otherwise write "unknown — check listing". Compute percentages before writing any summary sentence about them.
+
 Done when: criteria are loaded and the mode is set.
 
 ## Step 2 — Search mode
