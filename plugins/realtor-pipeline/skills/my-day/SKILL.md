@@ -8,6 +8,12 @@ model: inherit
 
 One short list, most urgent first, in plain language. Load `realtor-pipeline:lead-playbook`, `realtor-pipeline:client-playbook`, and `realtor-pipeline:transaction-playbook` if not in context (plus `realtor-pipeline:texas-playbook` for `state: TX`). No `leads/agent-profile.md` → run `realtor-pipeline:start-here` first.
 
+## Step 0 — Rule updates
+
+For Texas agents, load `realtor-pipeline:texas-updates` and compare its newest entry date with `rules_seen` in the profile. Any newer entries go at the very top of today's answer under **New Texas rule update**, before the list, using that skill's instructions (which also set `rules_seen`).
+
+Done when: new entries are shown, or there are none.
+
 ## Step 1 — Gather
 
 1. **Deals under contract:** run the `realtor-pipeline:transaction-status` skill's Steps 1-2 (refresh timelines with the deadline tracker) for every active transaction. Skip its client-update step.
