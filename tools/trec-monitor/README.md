@@ -9,10 +9,14 @@ A daily scheduled Claude task checks Texas real estate sources, compares what it
 Nothing reaches Danielle's assistant until the pull request is merged. After merging, her plugin picks up the change on its next update (`/plugin marketplace update scottemartin-realty`, or automatically if marketplace auto-update is on).
 
 ## Sources checked
-- TREC news and announcements: https://www.trec.texas.gov/news
-- TREC rule changes (proposed and adopted): https://www.trec.texas.gov/agency-information/rules-and-laws/trec-rules and the TREC section of the Texas Register (https://www.sos.texas.gov/texreg/)
-- TREC forms, promulgated contracts and notices: https://www.trec.texas.gov/forms
-- TREC commission meeting agendas and minutes: https://www.trec.texas.gov/agency-information/meetings
+All confirmed reachable from the cloud environment on 2026-11-09.
+- TREC news and announcements: https://www.trec.texas.gov/news-articles
+- TREC newsletters (TREC Advisor): https://www.trec.texas.gov/newsletters
+- TREC rules and laws hub: https://www.trec.texas.gov/rules-and-laws
+- TREC rules (current chapters, with proposed and adopted changes linked from there): https://www.trec.texas.gov/agency-information/rules-and-laws/trec-rules
+- TREC commission meetings (agendas, minutes, rule proposals): https://www.trec.texas.gov/apps/meetings/
+- TREC forms the assistant names (check each page for a new version number or effective date): https://www.trec.texas.gov/forms/one-four-family-residential-contract-resale, https://www.trec.texas.gov/forms/third-party-financing-addendum-0, https://www.trec.texas.gov/forms/amendment, https://www.trec.texas.gov/forms/notice-buyers-termination-contract, https://www.trec.texas.gov/forms/information-about-brokerage-services
+- Texas Register (TREC proposed and adopted rules): https://www.sos.texas.gov/texreg/index.shtml
 - New Texas laws touching Occupations Code ch. 1101 and Property Code ch. 5 and ch. 92: https://capitol.texas.gov (bill search) and https://statutes.capitol.texas.gov
 
 ## State
